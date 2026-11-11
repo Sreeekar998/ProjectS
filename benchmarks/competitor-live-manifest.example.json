@@ -1,0 +1,9 @@
+[
+  {
+    "label": "Replace with a consumer ecommerce target",
+    "url": "https://example.com",
+    "marketScope": "US",
+    "language": "en",
+    "relevantCompetitors": ["Manually reviewed competitor name"]
+  }
+]

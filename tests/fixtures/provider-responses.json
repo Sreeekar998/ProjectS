@@ -1,0 +1,75 @@
+{
+  "_provenance": "Deterministic fixtures for development and tests only. Never present these as live observations — every row carries isFixture=true and a fixtureLabel when loaded into provider_responses.",
+  "fixtures": [
+    {
+      "label": "target_mention_ranked_list",
+      "description": "Explicit numbered list; target appears first — rank-eligible, first-choice case.",
+      "responseText": "Here are some solid options:\n1. Nimbus Flow is a strong pick for small teams automating repetitive work.\n2. WorkPilot is a reasonable alternative with more enterprise features.\n3. TaskBridge is worth a look if budget is the main constraint.",
+      "sourceUrls": [],
+      "expected": { "targetMentioned": true, "targetRank": 1, "isRecommendation": true }
+    },
+    {
+      "label": "alias_mention",
+      "description": "Target referenced only by a known alias, not the canonical brand name.",
+      "responseText": "NimbusFlow (sometimes just called Nimbus) is a popular choice for workflow automation among small teams.",
+      "sourceUrls": [],
+      "expected": { "targetMentioned": true, "aliasMatched": "NimbusFlow" }
+    },
+    {
+      "label": "competitor_only_mention",
+      "description": "A tracked competitor is named; the target brand does not appear at all.",
+      "responseText": "WorkPilot and TaskBridge are both well-regarded automation tools for growing teams.",
+      "sourceUrls": [],
+      "expected": { "targetMentioned": false, "competitorMentioned": true }
+    },
+    {
+      "label": "no_mention",
+      "description": "Neither the target nor any tracked competitor appears — a true absence, not a failure.",
+      "responseText": "You could look into general-purpose spreadsheet automation add-ons, or hire a part-time operations assistant.",
+      "sourceUrls": [],
+      "expected": { "targetMentioned": false, "competitorMentioned": false }
+    },
+    {
+      "label": "ambiguous_prose_no_fabricated_rank",
+      "description": "Both brands mentioned in flowing prose with no ordered structure — rank must be null, never guessed.",
+      "responseText": "Both Nimbus Flow and WorkPilot are popular among small teams, and the right pick really depends on which existing tools you already use.",
+      "sourceUrls": [],
+      "expected": { "targetMentioned": true, "targetRank": null, "rankEligible": false }
+    },
+    {
+      "label": "citations_owned_domain",
+      "description": "Response cites the target's own domain — owned citation case.",
+      "responseText": "According to Nimbus Flow's own documentation, the platform supports over 40 integrations.",
+      "sourceUrls": ["https://nimbusflow.example/docs/integrations"],
+      "expected": { "targetMentioned": true, "ownedCitation": true }
+    },
+    {
+      "label": "citations_third_party_only",
+      "description": "Response cites an unrelated third-party source, not the target's own domain.",
+      "responseText": "A recent review roundup covered several workflow tools including Nimbus Flow.",
+      "sourceUrls": ["https://independent-review-site.example/best-automation-tools-2026"],
+      "expected": { "targetMentioned": true, "ownedCitation": false }
+    },
+    {
+      "label": "refusal",
+      "description": "Provider declines to answer — a terminal 'incomplete' outcome, not a target absence.",
+      "responseText": "I can't provide personalized recommendations for specific commercial products in this context.",
+      "sourceUrls": [],
+      "expected": { "terminalState": "incomplete", "targetMentioned": false, "countsAsAbsence": false }
+    },
+    {
+      "label": "partial_answer_truncated",
+      "description": "Response was cut off mid-sentence (e.g. operator copied before generation finished).",
+      "responseText": "Some good options for workflow automation include Nimbus Flow, which offers",
+      "sourceUrls": [],
+      "expected": { "terminalState": "incomplete", "countsAsAbsence": false }
+    },
+    {
+      "label": "malformed_observation_missing_response_text",
+      "description": "An import attempt with empty response text — must be rejected by recordManualObservation, never silently committed as a success.",
+      "responseText": "",
+      "sourceUrls": [],
+      "expected": { "shouldBeRejectedAtImport": true }
+    }
+  ]
+}

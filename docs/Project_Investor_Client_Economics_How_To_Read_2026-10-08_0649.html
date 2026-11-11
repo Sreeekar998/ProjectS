@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>How to read this workbook</title>
+<style>
+  @page { size: A4; margin: 10mm 12mm; }
+  body { font-family: Arial, Helvetica, sans-serif; font-size: 8.9pt; line-height: 1.25; color: #111; margin: 0; }
+  h1 { font-size: 13.5pt; margin: 0 0 1pt 0; }
+  .sub { color: #555; font-size: 8.2pt; margin: 0 0 5pt 0; }
+  h2 { font-size: 9.8pt; margin: 6pt 0 2pt 0; border-bottom: 1px solid #1F3864; color: #1F3864; padding-bottom: 1pt; }
+  p { margin: 0 0 4pt 0; }
+  ul { margin: 0 0 4pt 0; padding-left: 15pt; }
+  li { margin: 0 0 2pt 0; }
+  table { border-collapse: collapse; width: 100%; margin: 2pt 0 4pt 0; }
+  th, td { border: 1px solid #bfbfbf; padding: 1.5pt 4pt; vertical-align: top; text-align: left; font-size: 8.5pt; }
+  th { background: #D9E1F2; }
+  td.n { text-align: right; white-space: nowrap; }
+  .grade { display: inline-block; font-weight: bold; }
+  .two { display: flex; gap: 14pt; }
+  .two > div { flex: 1; }
+</style>
+</head>
+<body>
+<h1>How to read this workbook</h1>
+<p class="sub">Project_Investor_Client_Economics_FINAL_AUDITED_2026-10-08_0649.xlsx &middot; prepared 2026-10-08. Two to three minutes is enough.</p>
+
+<h2>What the workbook shows</h2>
+<p>What it costs us, in money paid to vendors, to serve <b>one client for one month</b> of AI-visibility monitoring, for three offering sizes, and how that cost compares with what competitors charge. It is an internal cost model at public list prices. It is not a price list, and it leaves out engineering, hosting staff, support and margin.</p>
+
+<h2>The sheets, in reading order</h2>
+<table>
+<tr><th style="width:24%">Sheet</th><th>What it is for</th></tr>
+<tr><td><b>Investor Summary</b></td><td>The one-page answer: the monthly cost stack per tier, cost per tracked answer, what we can offer, what drives the cost and what is still unknown. If short of time, read only this.</td></tr>
+<tr><td><b>Coverage</b></td><td>The AI surfaces (ChatGPT, Google AI Overviews, Gemini, Perplexity, Copilot, Claude &hellip;) we can monitor, which of the four competitors cover each one, and what one tracked answer costs us on each.</td></tr>
+<tr><td><b>Client Tiers &amp; Economics</b></td><td>The model itself. Sections 1&ndash;3 hold the <b>offering assumptions</b> (prompts, cadence, surfaces, volume); section 4 the <b>monthly cost to serve</b>; section 5 unit economics; section 6 a stress test of the Standard tier. Cell B30 selects the Actions option.</td></tr>
+<tr><td><b>Actions &amp; Models</b></td><td>The Recommendations layer, which is designed but not yet running: what the client gets, three priced options (Lower cost / Balanced / Higher quality), which AI models do the work, and why.</td></tr>
+<tr><td><b>Market Benchmark</b></td><td>Competitors&rsquo; public plan prices converted to price per tracked answer and per prompt, next to our cost on the same units.</td></tr>
+<tr><td><b>30-Prompt Cost Breakdown</b></td><td>A <b>standalone measured example</b>: one real client onboarding of 30 prompts on ChatGPT, with every model call and token captured. It is the evidence behind the per-prompt rates; it is <b>not</b> the basis of the tier volumes.</td></tr>
+<tr><td><b>Backup (hidden)</b></td><td>Every input, price, source and the arithmetic. Unhide it to trace any number.</td></tr>
+</table>
+
+<div class="two">
+<div>
+<h2>Where to look</h2>
+<ul>
+<li><b>Offering / tier assumptions:</b> Client Tiers &amp; Economics, rows 6&ndash;9 (prompts, cadence, runs, Oxylabs plan) and rows 12&ndash;21 (surfaces switched on); summarised in &ldquo;Three client tiers&rdquo; on the Investor Summary.</li>
+<li><b>Total cost to serve a client (COGS):</b> Investor Summary rows 6&ndash;13, or Client Tiers &amp; Economics row 38. Row 14 gives cost per tracked answer.</li>
+<li><b>Actions / Recommendations cost:</b> the line inside the stack; the options and their drivers on Actions &amp; Models.</li>
+<li><b>Competitor context:</b> Market Benchmark; the ratio in H20&ndash;H21 is headroom, not a price recommendation.</li>
+</ul>
+</div>
+<div>
+<h2>The key outputs</h2>
+<table>
+<tr><th>Tier</th><th>Prompts &times; surfaces, daily</th><th>Cost / month</th><th>Per tracked answer</th></tr>
+<tr><td>Small</td><td>50 &times; 3</td><td class="n">$7.63</td><td class="n">$0.0017</td></tr>
+<tr><td>Standard</td><td>150 &times; 5</td><td class="n">$36.98</td><td class="n">$0.0016</td></tr>
+<tr><td>Enterprise</td><td>350 &times; 7</td><td class="n">$381.93</td><td class="n">$0.0052</td></tr>
+</table>
+<p>A <b>tracked answer</b> is one prompt asked on one surface on one day. Enterprise is dear because two of its seven surfaces (Claude through its API, Copilot through a second vendor) cost 4&ndash;14 times a scraped answer; the five core surfaces cost about $0.0015 each.</p>
+</div>
+</div>
+
+<h2>Actuals, estimates and scenarios</h2>
+<p>Every figure carries a grade in its &ldquo;Basis / grade&rdquo; or &ldquo;Note&rdquo; column:</p>
+<ul>
+<li><span class="grade">ACTUAL</span> &mdash; measured: the tokens of the 14 model calls behind one onboarding, and the retry and check rates from 12 stored collection runs.</li>
+<li><span class="grade">OFFICIAL VENDOR PRICING</span> &mdash; list prices read on the vendors&rsquo; own pages (OpenAI, Anthropic, Google, Oxylabs, cloro), verified 2026-10-08.</li>
+<li><span class="grade">CALCULATED</span> &mdash; arithmetic on the two above; this covers the whole monitoring stack for every tier.</li>
+<li><span class="grade">ESTIMATED / ASSUMPTION</span> &mdash; not yet measured: all Actions-layer volumes (the layer has not run), tokens per Claude answer, hosting at $0, the 12-month spread of the one-time prompt build, ten clients sharing one Oxylabs plan, and the 2.8% retry rate applied to surfaces not yet wired. Section 6 of the Tiers sheet shows how far the Standard tier moves if these are wrong.</li>
+</ul>
+<p><b>Colour code:</b> blue text = input, yellow fill = the levers worth changing, green = linked from another sheet, black = formula. Change a blue cell on the Tiers sheet and every page follows.</p>
+
+<h2>How to interpret the outputs</h2>
+<ul>
+<li>The headline costs are <b>usage at list prices</b>: no negotiated rates, no fixed costs, no margin. The Oxylabs plan minimum ($30 a month) is shared across clients and only matters while the company tracks fewer than 20,000 answers a month in total.</li>
+<li>Cost scales with <b>cadence &times; surfaces &times; prompts</b>; our own AI (building the prompt set) and the deterministic analysis are a rounding error, and the Actions layer adds a tenth of the Small tier and a few percent of Enterprise.</li>
+<li>Only the 30-prompt ChatGPT configuration has run in production; the other surfaces are priced from the vendors&rsquo; rate cards, and no vendor discloses which model version answers a signed-out prompt.</li>
+</ul>
+</body>
+</html>

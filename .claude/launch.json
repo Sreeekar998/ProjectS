@@ -1,0 +1,54 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "project-sun",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "port": 3000
+    },
+    {
+      "name": "sun-verify",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "export PATH=\"$HOME/.nvm/versions/node/v20.13.0/bin:$PATH\" && SUN_DATA_DIR=./data/verify SUN_EVIDENCE_DIR=./data/verify/evidence-store NEXT_DIST_DIR=.next-e2e OPENAI_API_KEY= PORT=3100 exec npm run dev"
+      ],
+      "port": 3100,
+      "autoPort": false
+    },
+    {
+      "name": "sun-verify-vendors",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "export PATH=\"$HOME/.nvm/versions/node/v20.13.0/bin:$PATH\" && SUN_DATA_DIR=./data/verify-vendors SUN_EVIDENCE_DIR=./data/verify-vendors/evidence-store NEXT_DIST_DIR=.next-e2e OPENAI_API_KEY= GEMINI_API_KEY= SUN_LLM_NO_PAID=1 BRIGHTDATA_API_TOKEN=mock-brightdata CLORO_API_KEY=mock-cloro DECODO_AUTH_TOKEN=mock-decodo OXYLABS_AUTH=mock:oxylabs SUN_BRIGHTDATA_BASE_URL=http://localhost:3999/brightdata SUN_CLORO_BASE_URL=http://localhost:3999/cloro SUN_DECODO_BASE_URL=http://localhost:3999/decodo SUN_OXYLABS_BASE_URL=http://localhost:3999/oxylabs PORT=3100 exec npm run dev"
+      ],
+      "port": 3100,
+      "autoPort": false
+    },
+    {
+      "name": "sun-verify-measure",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "export PATH=\"$HOME/.nvm/versions/node/v20.13.0/bin:$PATH\" && SUN_DATA_DIR=./data/verify-measure SUN_EVIDENCE_DIR=./data/verify-measure/evidence-store SUN_ENGINES=chatgpt,gemini NEXT_DIST_DIR=.next-e2e OPENAI_API_KEY= GEMINI_API_KEY= SUN_LLM_NO_PAID=1 BRIGHTDATA_API_TOKEN=mock-brightdata CLORO_API_KEY=mock-cloro DECODO_AUTH_TOKEN=mock-decodo OXYLABS_AUTH=mock:oxylabs SUN_BRIGHTDATA_BASE_URL=http://localhost:3999/brightdata SUN_CLORO_BASE_URL=http://localhost:3999/cloro SUN_DECODO_BASE_URL=http://localhost:3999/decodo SUN_OXYLABS_BASE_URL=http://localhost:3999/oxylabs PORT=3100 exec npm run dev"
+      ],
+      "port": 3100,
+      "autoPort": false
+    },
+    {
+      "name": "sun-deck",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "export PATH=\"$HOME/.nvm/versions/node/v20.13.0/bin:$PATH\" && SUN_DATA_DIR=./data/deck SUN_EVIDENCE_DIR=./data/deck/evidence-store NEXT_DIST_DIR=data/deck/.next PORT=3418 exec npm run dev"
+      ],
+      "port": 3418,
+      "autoPort": false
+    }
+  ]
+}

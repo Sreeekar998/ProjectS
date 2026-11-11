@@ -1,0 +1,83 @@
+---
+paths:
+  - "src/lib/landscape/**"
+  - "src/app/projects/*/landscape/**"
+  - "src/app/api/projects/*/landscape/**"
+  - "tests/unit/landscape/**"
+  - "tests/benchmark/competitor-intelligence.test.ts"
+  - "scripts/benchmark-competitors-live.ts"
+  - "scripts/probe-discovery.ts"
+  - "benchmarks/competitor-live-manifest.example.json"
+---
+
+# Landscape stage (topics + competitor intelligence): guardrails
+
+How it flows:
+1. `POST …/landscape/generate` returns 202 and runs `generateLandscape`. It needs the latest profile version confirmed; a failure shows only as a `landscape.competitor.discovery_failed` event.
+2. Topics are created when none are live, and untouched system topics are rebuilt for a newer confirmed profile version (see step 7). The target entity is created once per project and never renamed.
+3. A discovery run then starts, unless one is `running` or a completed run for the same profile version found candidates.
+4. `discoverCompetitors` runs its sources in parallel; each returns `[]` on error:
+   - search-grounded rivals anchored to the confirmed place (`competitor-search.ts`, stage `search`; OpenAI only with `SUN_ALLOW_PAID_LANDSCAPE=1`, Gemini grounding needs a billing-enabled key);
+   - nearby same-category places from OpenStreetMap Overpass for place-bound targets (`competitor-nearby.ts`, `geo/nearby.ts`; best-effort, cached);
+   - model hypotheses via `lib/llm` stage `competitors` (free Gemini by default);
+   - keyless Wikipedia/Wikidata category-signature retrieval (`open-knowledge.ts`, via the throttled `wiki-client.ts`): a candidate must share one of the target's own *specific* category heads (a head from an unscoped category of at most `MAX_CATEGORY_SIZE` members, so "Software companies" or "Companies based in San Francisco" never count) or score ≥0.8 textually, and its confidence is capped at 68 (46 without a shared head). Postman once collected UiPath, Notion, Datadog and F5 from geography-only categories;
+   - website comparison-language regex (comparison-only candidates are dropped for place-bound targets and when every word is the target's own vocabulary);
+   - a disabled web-search seam.
+5. Candidates are merged by registrable domain or merge key (`competitorMergeKey`: normalised name without spaces and without a trailing place the target is in, so "Akira Back Dubai" and "Akira Back", "SushiArt" and "Sushi Art" are one rival, and `sameBusinessKey` treats a name that is another plus one generic tail ("Pluto Card" and "Pluto", "Gazebo Restaurant" and "Gazebo") as the same business; strongest structural affinity kept), screened once for like-for-like relevance (`competitor-screening.ts`), then verified with an SSRF-safe site fetch that also reads footer/address/JSON-LD localities and the target's place names (`competitor-verifier.ts`). A failed fetch is recorded as `verificationError`, not as "not a competitor": a memory-only candidate that screening found relevant (≥50 with a reachable site, ≥65 without a likely domain) is rescued at confidence ≤52 with a summary that says so (`competitor-scoring.ts` `rescuedByScreening`; Pastels Salon was rejected on a timeout).
+6. Each candidate is scored with archetype weights (absent dimensions are `-1` and renormalised) and given a role: a rationale that calls the rival a substitute, an upmarket or higher-end alternative, or one chosen "rather than" the target's kind of meal is `substitute` before any overlap score is read (`competitor-scoring.ts` `roleFromSignals`; Trèsind Studio shared every category signal with a casual North Indian restaurant and was typed "direct"); otherwise strong structural affinity or overlap is direct, then the screening model's type. Screening defines the roles by how a customer chooses: direct = same shortlist for the same purchase; substitute = same need, different format or price tier; adjacent = part of the offer; marketplace = where people choose, never what they choose between. Geography comes from positive evidence (`geographyEvidence`): unknown is 50; rejection needs evidence of another city.
+7. Competitors are planned in geographic tiers (`competitor-tiers.ts`: area for strictly local storefronts and for a multi-location business whose operator chose one branch's area (`location.marketArea`), city for almost everything with a city including place-bound groups of national or international scope whose primary address is a venue, country for national/known brands or when there is no local tier; a place-bound international business gets its market country only, a regional chain keeps its region, so a Dubai restaurant group with Cairo venues is compared "Across Dubai" and "Across the United Arab Emirates", not against Cairo sushi chains) with per-tier quotas (16, or 18 with three tiers). Valid suggestions plus up to 8 rejected rows are saved as `entities` with `candidate_profile.tier`; the page shows only valid rows, grouped by tier, never rejection reasons. Topics are generated by `topic-generation.ts` (stage `topics`, gpt-5.6-terra first; grounded in offering groups and audiences; each must be a category buyers compare providers in, never a feature or branded sub-product; when fewer than 4 usable topics come back the model is asked once more to split or add before the rules pad runs, and the pad never uses an offering group's name (Zendesk was padded with "Service Solutions"); a restaurant keeps one drinks topic at most (`capDrinkTopics`: a three-star tasting-menu restaurant got "Wine pairings" and "Cocktails" because its bar menu PDF was its longest document, and six of ten Discovery prompts were about drinks; bars, pubs and cafés are exempt); rules fallback) and untouched system topics are rebuilt when the confirmed profile version changes.
+8. `PATCH …/landscape` first applies any topic/competitor updates in the body. For `action: "confirm"` it then returns 400 (`topic_count_out_of_range` / `eligible_competitor_required`) unless there are 4–6 confirmed topics and ≥1 eligible competitor.
+9. It then calls `freezeCompetitiveSet` against the latest profile version, without checking `confirmedAt`. That appends a `competitive_set_versions` row; a hash equal to the latest reuses it.
+
+## Invariants
+- **Suggest, never confirm.** Discovery only suggests. Only operator actions confirm: a PATCH, or a manual add (`source: user_manual`, status `confirmed`).
+- **Eligible competitors.** Eligible means confirmed and not a marketplace. Marketplaces are never frozen, never compared in Trade Offs, never tracked in Measure.
+  - Adjacent is eligible on purpose: freezing only direct/substitute dropped top rivals from Trade Offs and Measure.
+  - The rule has 6 copies; change them together.
+    - Four use the allow-list `["direct","substitute","adjacent"]`: `landscape/repository.ts` (freeze), the landscape API route, the landscape page, `prompts/coverage-policy.ts`.
+    - Two use `competitorType !== "marketplace"`, which also admits null types: `prompts/intent-generation.ts`, `prompts/frame-generation.ts`.
+- **Never suggest the brand itself (goal; only partly enforced).**
+  - `scoreCompetitorCandidate` rejects the target by name/alias/domain, its parent, and target-owned product lines.
+  - Sibling and owned brands are excluded only inside `open-knowledge.ts`, so AI or website candidates can still surface a sibling. Add new exclusions centrally.
+- **A failing source never ends discovery.**
+  - Wikimedia calls go through serialized throttles with 429/503 backoff (429s were once misread as "no market").
+  - Don't declare array bounds in this source's Gemini `responseSchema`. Nested sibling arrays with `maxItems` inside an outer `maxItems` array were rejected with a 400, which the source swallowed, so the AI lane silently produced zero candidates.
+  - Bound results after parsing; AI hypothesis items are parsed one by one, so one bad item no longer discards the response.
+- **Unknown is not zero** when scoring. Scoring an unverified dimension as 0 once ranked obscure brands above Adidas. The stored `scoreBreakdown.structuralAffinity` is clamped to 0 even when absent, so read 0 there as "no structural evidence".
+- **No hardcoded names.** No brand or competitor lists. Short/spoken names are derived generically in `name-forms.ts` (descriptor tails or the company's own domain label, ≥4 letters).
+- **Append-only frozen sets.** `competitive_set_versions` is append-only, and Prompts and Measure read frozen snapshots.
+
+## Couplings
+- **`name-forms.ts` feeds three consumers:**
+  - competitor leakage terms (`buildCompetitorForbiddenTerms` in `prompts/validators.ts`);
+  - Trade Off rival naming (`spokenName`);
+  - analysis mention linking for every entity, including the target.
+
+  Changing it requires an `ANALYSIS_VERSION` bump plus prompt tests. The target's own Discovery leakage lexicon (`buildTargetLeakageLexicon`) does **not** use short name forms: it uses brand, plural, profile aliases, domains and proprietary offerings.
+- **Aliases reach downstream.** Saved aliases (AI-supplied and merged names) are frozen. They become Discovery leakage terms and mention-linking surfaces, so a generic alias rejects valid prompts and creates false mentions.
+- **The frozen/live boundary leaks.** Measure reads the **latest** competitive set version, not the prompt set's. Analysis links against **live** confirmed entities, marketplaces included. Re-confirming after collection changes Measure for old runs.
+- **Policy version vs rerun guard.** A policy-version change marks Landscape stale (and re-runs discovery on open) only when no competitive set is frozen and no competitor row was touched by the operator; otherwise tiers are derived at read time without network.
+
+## Pitfalls
+- **Operator decisions survive rediscovery.** `upsertRankedCompetitorCandidate` refreshes only evidence fields on confirmed, `user_manual` and operator-removed rows (operator removals are rows with `status: removed` and no `rejectionReason`). Keep that distinction if the PATCH route changes.
+- **Probing without saving.** `scripts/probe-discovery.ts <projectId>` runs discovery without writing discovery rows. It still has side effects:
+  - it opens `$SUN_DATA_DIR/sun.db` (default: the live `./data`) and applies pending migrations;
+  - it reads keys stored in that DB, plus exported env (not `.env.local`);
+  - it calls Gemini, Wikimedia and candidate sites;
+  - it uses the latest profile version even if unconfirmed.
+- **Merge order.** `resolveCompetitorCandidates` keeps the first source's `proposedType` unless that source was only a website comparison; structural affinity takes the maximum.
+- **Relationship regex.** `roleFromSignals` anchors customer/client to "is a customer of"; reasons like "customers would also consider it" are normal for search-sourced rivals.
+- **Marketplace wins.** A marketplace proposal beats structural evidence, and the UI can re-type only manual rows.
+- **Stranded runs.** A discovery run left `running` by a restart is marked failed (`stranded`) the next time generation runs; the page detects the missing job (`inProgress:false`) and offers "Start again". Generate routes refuse duplicates in-process (`lib/jobs/active.ts`).
+- **Rows arrive late.** Events fire per source, but rows are written only after all sources and verifications finish, so the page list stays empty until the end.
+- **Missing key after restart.** A Gemini key pasted in the UI is invisible to discovery after a restart until `loadCredentials()` runs.
+
+## Validate
+- `npx vitest run tests/unit/landscape tests/benchmark/competitor-intelligence.test.ts`
+- If name forms, aliases, snapshot shape or eligibility change, also run `tests/unit/analysis/short-name-mentions.test.ts`, `tests/unit/prompts` and `tests/integration/{prompt-review-actions,custom-prompts,route-switch,manual-observation}.test.ts`.
+- For real businesses, follow the `sun-landscape-quality` skill.
+- `scripts/benchmark-competitors-live.ts <manifest.json>` needs the user's OK. It requires:
+  - a reviewed manifest of ≥10 targets;
+  - `GEMINI_API_KEY` exported in the shell;
+  - `SUN_DATA_DIR` and `SUN_EVIDENCE_DIR` pointed at scratch dirs.
+  It live-crawls every target and writes `benchmarks/competitor-live-results.json`.

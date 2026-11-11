@@ -1,0 +1,16 @@
+node_modules/
+.next/
+.next-build/
+.next-e2e/
+out/
+playwright-report/
+test-results/
+coverage/
+data/*
+!data/.gitkeep
+evidence-store/*
+!evidence-store/.gitkeep
+*.log
+.DS_Store
+.env.local
+*.tsbuildinfo

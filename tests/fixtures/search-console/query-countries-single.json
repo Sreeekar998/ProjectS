@@ -1,0 +1,23 @@
+{
+  "rows": [
+    {
+      "keys": [
+        "are"
+      ],
+      "clicks": 4000,
+      "impressions": 57950,
+      "ctr": 0.069,
+      "position": 9.0
+    },
+    {
+      "keys": [
+        "ind"
+      ],
+      "clicks": 210,
+      "impressions": 3050,
+      "ctr": 0.0689,
+      "position": 14.0
+    }
+  ],
+  "responseAggregationType": "byProperty"
+}

@@ -1,0 +1,50 @@
+{
+  "rows": [
+    {
+      "keys": [
+        "are"
+      ],
+      "clicks": 3000,
+      "impressions": 43920,
+      "ctr": 0.0683,
+      "position": 9.0
+    },
+    {
+      "keys": [
+        "ind"
+      ],
+      "clicks": 400,
+      "impressions": 5490,
+      "ctr": 0.0729,
+      "position": 14.0
+    },
+    {
+      "keys": [
+        "sau"
+      ],
+      "clicks": 300,
+      "impressions": 3050,
+      "ctr": 0.0984,
+      "position": 12.0
+    },
+    {
+      "keys": [
+        "gbr"
+      ],
+      "clicks": 150,
+      "impressions": 1830,
+      "ctr": 0.082,
+      "position": 15.0
+    },
+    {
+      "keys": [
+        "zzz"
+      ],
+      "clicks": 360,
+      "impressions": 6710,
+      "ctr": 0.0537,
+      "position": 20.0
+    }
+  ],
+  "responseAggregationType": "byProperty"
+}

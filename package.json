@@ -1,0 +1,62 @@
+{
+  "name": "project-sun-phase2-app",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "scripts": {
+    "predev": "tsx scripts/bootstrap.ts",
+    "dev": "next dev",
+    "build": "npm run predev && NEXT_DIST_DIR=.next-build next build",
+    "start": "tsx scripts/start.ts",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --exclude tests/e2e/**",
+    "test:watch": "vitest",
+    "test:unit": "vitest run tests/unit",
+    "test:integration": "vitest run tests/integration",
+    "test:security": "vitest run tests/security",
+    "test:benchmark": "vitest run tests/benchmark",
+    "test:e2e": "playwright test",
+    "db:init": "tsx scripts/bootstrap.ts",
+    "db:reset": "tsx scripts/db-reset.ts",
+    "clean-room": "tsx scripts/clean-room.ts",
+    "playwright:install": "playwright install chromium",
+    "verify": "npm run lint && npm run typecheck && npm run test && npm run build",
+    "benchmark:business-profile": "tsx scripts/benchmark-business-profile.ts",
+    "benchmark:competitors:live": "tsx scripts/benchmark-competitors-live.ts"
+  },
+  "dependencies": {
+    "@google/genai": "1.9.0",
+    "better-sqlite3": "11.10.0",
+    "cheerio": "1.0.0",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "drizzle-orm": "0.44.2",
+    "libphonenumber-js": "^1.13.13",
+    "next": "15.5.25",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "tailwind-merge": "3.3.1",
+    "tldts": "6.1.86",
+    "unpdf": "^1.8.1",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.55.0",
+    "@tailwindcss/postcss": "4.1.12",
+    "@types/better-sqlite3": "7.6.13",
+    "@types/node": "20.19.9",
+    "@types/react": "19.1.12",
+    "@types/react-dom": "19.1.9",
+    "drizzle-kit": "0.31.4",
+    "eslint": "9.34.0",
+    "eslint-config-next": "15.5.25",
+    "playwright": "1.55.0",
+    "tailwindcss": "4.1.12",
+    "tsx": "4.20.5",
+    "typescript": "5.9.2",
+    "vitest": "3.2.4"
+  }
+}

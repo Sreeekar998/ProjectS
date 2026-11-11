@@ -1,0 +1,55 @@
+{
+  "rows": [
+    {
+      "keys": [
+        "gel manicure old quay",
+        "are"
+      ],
+      "clicks": 190,
+      "impressions": 3800,
+      "ctr": 0.05,
+      "position": 3.0
+    },
+    {
+      "keys": [
+        "nail salon port avery",
+        "are"
+      ],
+      "clicks": 140,
+      "impressions": 4600,
+      "ctr": 0.0304,
+      "position": 6.0
+    },
+    {
+      "keys": [
+        "nail salon near me",
+        "are"
+      ],
+      "clicks": 150,
+      "impressions": 5000,
+      "ctr": 0.03,
+      "position": 7.0
+    },
+    {
+      "keys": [
+        "pedicure",
+        "are"
+      ],
+      "clicks": 70,
+      "impressions": 2000,
+      "ctr": 0.035,
+      "position": 9.0
+    },
+    {
+      "keys": [
+        "lumen studio",
+        "are"
+      ],
+      "clicks": 800,
+      "impressions": 4500,
+      "ctr": 0.1778,
+      "position": 1.1
+    }
+  ],
+  "responseAggregationType": "byProperty"
+}

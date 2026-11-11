@@ -1,0 +1,14 @@
+{
+  "error": {
+    "code": 403,
+    "message": "Search Analytics load quota exceeded.",
+    "errors": [
+      {
+        "message": "Quota exceeded",
+        "domain": "usageLimits",
+        "reason": "quotaExceeded"
+      }
+    ],
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}

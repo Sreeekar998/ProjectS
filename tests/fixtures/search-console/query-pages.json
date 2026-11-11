@@ -1,0 +1,41 @@
+{
+  "rows": [
+    {
+      "keys": [
+        "https://www.lumenstudio.test/"
+      ],
+      "clicks": 1500,
+      "impressions": 20000,
+      "ctr": 0.075,
+      "position": 4.0
+    },
+    {
+      "keys": [
+        "https://www.lumenstudio.test/services/gel-manicure"
+      ],
+      "clicks": 600,
+      "impressions": 9000,
+      "ctr": 0.0667,
+      "position": 5.0
+    },
+    {
+      "keys": [
+        "https://www.lumenstudio.test/booking"
+      ],
+      "clicks": 300,
+      "impressions": 4000,
+      "ctr": 0.075,
+      "position": 6.0
+    },
+    {
+      "keys": [
+        "https://blog.other.test/post"
+      ],
+      "clicks": 50,
+      "impressions": 900,
+      "ctr": 0.0556,
+      "position": 12.0
+    }
+  ],
+  "responseAggregationType": "byPage"
+}

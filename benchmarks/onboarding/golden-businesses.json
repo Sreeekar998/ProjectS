@@ -1,0 +1,1372 @@
+{
+ "version": "onboarding-golden@1",
+ "createdAt": "2026-09-13",
+ "purpose": "Golden businesses for Understand -> Landscape -> Prompts evaluation. Expectations are hand-checked from each business's own website and public sources (see researched.*.source). Not read by src/.",
+ "cases": [
+  {
+   "id": "00-dubai-luxury-salon-atelier10",
+   "url": "https://atelier10.ae/",
+   "regression": "Client demo failure 2026-09-13: classified as healthcare, doctor/clinic prompts, wrong location.",
+   "expect": {
+    "brand": [
+     "Atelier 10"
+    ],
+    "kinds": [
+     "personal_care_wellness"
+    ],
+    "city": [
+     "Dubai"
+    ],
+    "area": [
+     "DIFC",
+     "Financial Centre"
+    ],
+    "country": "AE",
+    "scopes": [
+     "hyperlocal",
+     "local"
+    ],
+    "placeBound": true,
+    "healthcareWordsAllowed": false,
+    "tiers": [
+     "area",
+     "city"
+    ]
+   },
+   "researched": {
+    "industry": "Personal care & beauty > Hair & beauty salon",
+    "competitors": [
+     {
+      "name": "The Salon Luxe (Ritz-Carlton DIFC)",
+      "url": "https://www.thesalonluxedubai.com/",
+      "source": "https://www.propertyfinder.ae/blog/salons-in-difc/",
+      "tier": "area"
+     },
+     {
+      "name": "Y12 Salon (ICD Brookfield Place, DIFC)",
+      "url": "https://y12salons.com/",
+      "source": "https://www.difc.com/experience/things-to-do/services/y12-salon",
+      "tier": "area"
+     },
+     {
+      "name": "It's Beauty DIFC",
+      "url": "https://itsbeauty.ae/branches/difc/",
+      "source": "https://www.fresha.com/lp/en/bt/hair-salons/in/ae-dubai/difc",
+      "tier": "area"
+     },
+     {
+      "name": "HAIRPLAY Hair Extensions Salon (Emirates Financial Towers, DIFC)",
+      "url": "https://hairplayextensions.com/dubai/",
+      "source": "https://salonsindubai.ae/difc/balayage",
+      "tier": "area"
+     },
+     {
+      "name": "Laurance Hair & Beauty Salon",
+      "url": "https://laurancesalon.com/",
+      "source": "same district as case 01",
+      "tier": "area"
+     }
+    ]
+   }
+  },
+  {
+   "id": "01-dubai-luxury-salon-laurance",
+   "url": "https://laurancesalon.com/",
+   "expect": {
+    "brand": [
+     "Laurance"
+    ],
+    "kinds": [
+     "personal_care_wellness"
+    ],
+    "city": [
+     "Dubai"
+    ],
+    "area": [
+     "DIFC",
+     "Financial Centre",
+     "Waldorf"
+    ],
+    "country": "AE",
+    "scopes": [
+     "hyperlocal",
+     "local"
+    ],
+    "placeBound": true,
+    "healthcareWordsAllowed": false,
+    "tiers": [
+     "area",
+     "city"
+    ]
+   },
+   "researched": {
+    "brand": "Laurance Hair & Beauty Salon",
+    "location": {
+     "neighborhood": "Waldorf Astoria Hotel DIFC",
+     "district": "DIFC (Dubai International Financial Centre)",
+     "city": "Dubai",
+     "region": "Dubai",
+     "country": "United Arab Emirates",
+     "coords": {
+      "lat": 25.2112169,
+      "lng": 55.281696,
+      "source": "JSON-LD GeoCoordinates on homepage"
+     }
+    },
+    "industry": "Personal care & beauty > Hair & beauty salon (hair-led, full service)",
+    "businessType": "Independent single-location luxury salon (est. 2017, Lebanese-founded; L'Oreal ambassador since 2013; has a 'Franchise' page but only one operating site listed)",
+    "services": [
+     "Haircuts & styling",
+     "Hair colour & balayage",
+     "Keratin & Brazilian blowout",
+     "Hair extensions (hairtalk)",
+     "Bridal hair & make-up",
+     "Manicure & pedicure",
+     "Facials / skin & beauty",
+     "Lashes & brows"
+    ],
+    "scope": "local (DIFC / Dubai)",
+    "competitors": [
+     {
+      "name": "Atelier 10 Salon (Staybridge Suites DIFC)",
+      "url": "https://atelier10.ae/",
+      "source": "https://salonsindubai.ae/difc/balayage",
+      "tier": "area"
+     },
+     {
+      "name": "The Salon Luxe (Ritz-Carlton DIFC)",
+      "url": "https://www.thesalonluxedubai.com/",
+      "source": "https://www.propertyfinder.ae/blog/salons-in-difc/",
+      "tier": "area"
+     },
+     {
+      "name": "Y12 Salon (ICD Brookfield Place, DIFC)",
+      "url": "https://y12salons.com/",
+      "source": "https://www.difc.com/experience/things-to-do/services/y12-salon",
+      "tier": "area"
+     },
+     {
+      "name": "It's Beauty DIFC",
+      "url": "https://itsbeauty.ae/branches/difc/",
+      "source": "https://www.fresha.com/lp/en/bt/hair-salons/in/ae-dubai/difc",
+      "tier": "area"
+     },
+     {
+      "name": "HAIRPLAY Hair Extensions Salon (Emirates Financial Towers, DIFC)",
+      "url": "https://hairplayextensions.com/dubai/",
+      "source": "https://salonsindubai.ae/difc/balayage",
+      "tier": "area"
+     }
+    ],
+    "notes": "Phone +971 4 325 4440; WhatsApp booking wa.me/971559060640; Instagram/TikTok @laurancebeautysalon; 'Celebrities' page and 'Franchise' link are positioning traps. Same district as the Atelier 10 regression case, so competitor sets overlap intentionally."
+   }
+  },
+  {
+   "id": "02-dubai-independent-restaurant-orfali-bros",
+   "url": "https://orfalibros.com/",
+   "expect": {
+    "brand": [
+     "Orfali"
+    ],
+    "kinds": [
+     "restaurant_food_beverage"
+    ],
+    "city": [
+     "Dubai"
+    ],
+    "area": [
+     "Jumeirah",
+     "Wasl"
+    ],
+    "country": "AE",
+    "scopes": [
+     "hyperlocal",
+     "local"
+    ],
+    "placeBound": true,
+    "healthcareWordsAllowed": false,
+    "tiers": [
+     "area",
+     "city"
+    ],
+    "acceptTiers": [
+     [
+      "area",
+      "city",
+      "country"
+     ]
+    ]
+   },
+   "researched": {
+    "brand": "Orfali Bros",
+    "location": {
+     "neighborhood": "Wasl 51 (Al Wasl Road), Jumeirah 1",
+     "district": "Jumeirah",
+     "city": "Dubai",
+     "region": "Dubai",
+     "country": "United Arab Emirates"
+    },
+    "industry": "Food & beverage > Restaurant > Contemporary Middle Eastern / Aleppine bistro (tasting menus)",
+    "businessType": "Independent chef-owned restaurant, single location (three Syrian brothers); Michelin 1 star; MENA's 50 Best #1 2023-2025, #4 2026",
+    "services": [
+     "Tasting menu 'Aromas of Aleppo' (AED 295 pp)",
+     "Tasting menu 'The OG Menu' (AED 350 pp)",
+     "Tasting menu 'The Voyage Menu' (AED 795 pp)",
+     "Reservations (rsvp@orfalibros.com, +971 4 258 0510)",
+     "Sister concept 'Threebros'",
+     "Press / about"
+    ],
+    "scope": "local (Dubai) with destination-dining / international-visitor pull",
+    "competitors": [
+     {
+      "name": "Sufret Maryam (Wasl 51)",
+      "url": "https://sufretmaryam.com/",
+      "source": "https://thehuntr.com/guide/your-ultimate-guide-to-jumeirahs-best-independent-restaurants-40-local-gems-to-add-to-your-list",
+      "tier": "area"
+     },
+     {
+      "name": "Manao (Al Wasl Road)",
+      "url": "https://www.manao.ae/",
+      "source": "https://whatson.ae/2026/03/15-amazing-independent-restaurants-in-dubai-we-love/",
+      "tier": "area"
+     },
+     {
+      "name": "Itadaku (Al Wasl Road, Jumeirah 1)",
+      "url": "https://itadaku.ae/",
+      "source": "https://thehuntr.com/guide/your-ultimate-guide-to-jumeirahs-best-independent-restaurants-40-local-gems-to-add-to-your-list",
+      "tier": "area"
+     },
+     {
+      "name": "3 Fils (Jumeirah Fishing Harbour)",
+      "url": "https://www.3fils.com/",
+      "source": "https://whatson.ae/2026/03/15-amazing-independent-restaurants-in-dubai-we-love/ (independent-restaurant roundup; 3fils.com verified live, Next.js SSR, 7.8k chars, 2 locations Dubai+Abu Dhabi)",
+      "tier": [
+       "area",
+       "city"
+      ]
+     }
+    ],
+    "notes": "Competitor URLs for Sufret Maryam/Manao/Itadaku were NOT curl-verified (names sourced from the guides cited). There is no /menu/ URL: menus live at /the-og-menu/, /aromas-of-aleppo-295-aed-per-person/, /the-voyage-menu/. Address appears only as 'DUBAI, WASL 51 MALL' in the footer; no Restaurant/LocalBusiness schema."
+   }
+  },
+  {
+   "id": "03-dubai-specialty-coffee-nightjar",
+   "url": "https://www.nightjar.coffee/",
+   "expect": {
+    "brand": [
+     "Nightjar"
+    ],
+    "kinds": [
+     "restaurant_food_beverage",
+     "consumer_brand_manufacturer",
+     "ecommerce_dtc_retail",
+     "local_retail_store"
+    ],
+    "city": [
+     "Dubai"
+    ],
+    "area": [
+     "Alserkal",
+     "Al Quoz"
+    ],
+    "country": "AE",
+    "scopes": [
+     "hyperlocal",
+     "local",
+     "regional",
+     "national"
+    ],
+    "placeBound": null,
+    "healthcareWordsAllowed": false
+   },
+   "researched": {
+    "brand": "Nightjar Coffee Roasters",
+    "location": {
+     "neighborhood": "Alserkal Avenue",
+     "district": "Al Quoz (Al Quoz Industrial Area 1)",
+     "city": "Dubai",
+     "region": "Dubai",
+     "country": "United Arab Emirates"
+    },
+    "industry": "Food & beverage > Specialty coffee roastery & cafe (plus DTC e-commerce for beans and craft beverages)",
+    "businessType": "Local independent roastery-cafe with 3 Dubai outlets (Alserkal Avenue flagship roastery, Madinat Badr, City Walk 2), online shop, wholesale & franchising",
+    "services": [
+     "Specialty coffee bar (V60, espresso, cold brew / nitro on tap)",
+     "Roasted beans: single origins, micro-lots, seasonal blends, pick & mix deals",
+     "Craft beverages (kombucha, iced tea)",
+     "Eatery / food menu",
+     "Merch & home-barista equipment",
+     "Wholesale & franchising",
+     "Home & office subscriptions"
+    ],
+    "scope": "local (Dubai; UAE-wide shipping)",
+    "competitors": [
+     {
+      "name": "The Espresso Lab",
+      "url": "https://theespressolab.com/",
+      "source": "https://brewatlas.co/dubai/al-quoz"
+     },
+     {
+      "name": "RAW Coffee Company",
+      "url": "https://rawcoffeecompany.com/",
+      "source": "https://brewatlas.co/dubai/al-quoz"
+     },
+     {
+      "name": "Subko (Warehouse 15, Alserkal Avenue)",
+      "url": "https://subko.coffee/",
+      "source": "https://whatson.ae/2023/06/4-of-the-coolest-coffee-shops-to-visit-in-al-quoz-right-now/"
+     },
+     {
+      "name": "BKRY (Alserkal Avenue)",
+      "url": "https://www.bkry.ae/",
+      "source": "https://www.timeoutdubai.com/food-drink/features/al-quoz-cafes"
+     },
+     {
+      "name": "Julith (Al Quoz)",
+      "url": "https://julith.ae/",
+      "source": "https://brewatlas.co/dubai/al-quoz"
+     }
+    ],
+    "notes": "Competitor URLs are best-guess domains (not curl-verified); names/sources are verified. Alserkal outlet hours 9AM-10PM, alserkal@nightjar.coffee, +971 4 330 6635; sales +971 50 365 1120. Meta description names all 3 outlets. Alternate candidate: Mokha 1450 (https://www.mokha1450.com/, Shopify, Al Wasl, 3.4k chars)."
+   }
+  },
+  {
+   "id": "04-dubai-local-service-versailles-dental",
+   "url": "https://www.versaillesdentalclinic.com/",
+   "expect": {
+    "brand": [
+     "Versailles"
+    ],
+    "kinds": [
+     "healthcare_medical"
+    ],
+    "city": [
+     "Dubai"
+    ],
+    "area": [
+     "Healthcare City",
+     "DHCC",
+     "Oud Metha",
+     "Umm Hurair"
+    ],
+    "country": "AE",
+    "scopes": [
+     "hyperlocal",
+     "local"
+    ],
+    "placeBound": true,
+    "healthcareWordsAllowed": true
+   },
+   "researched": {
+    "brand": "Versailles Dental Clinic",
+    "location": {
+     "neighborhood": "Al Razi Medical Complex (Building 64), Block A, 1st Floor",
+     "district": "Dubai Healthcare City (DHCC), Umm Hurair 2 / Oud Metha",
+     "city": "Dubai",
+     "region": "Dubai",
+     "country": "United Arab Emirates",
+     "coords": {
+      "lat": 25.15463,
+      "lng": 55.40199,
+      "source": "JSON-LD - LOOKS WRONG (~15 km SE of DHCC; DHCC is ~25.23, 55.32). Treat as a trap."
+     }
+    },
+    "industry": "Healthcare > Dental clinic (general, cosmetic, implant, orthodontic, pediatric, holistic dentistry)",
+    "businessType": "Independent private dental clinic, single location, founded 2007, led by Dr. Dominique Caron (French National Academy of Dental & Oral Surgery member)",
+    "services": [
+     "General dentistry",
+     "Cosmetic dentistry (veneers, whitening, smile design)",
+     "Dental implants",
+     "Crowns & bridges",
+     "Orthodontics (braces / clear aligners)",
+     "Oral surgery",
+     "Kids / pediatric dentistry",
+     "Holistic dentistry",
+     "Dental emergency"
+    ],
+    "scope": "local (Dubai; some medical-tourism pull)",
+    "competitors": [
+     {
+      "name": "Dr. Priyanka Sharma Dental Clinic (Bldg 24, DHCC)",
+      "url": "https://drpriyankaclinic.ae/",
+      "source": "https://drpriyankaclinic.ae/2026/03/06/top-5-dental-clinic-in-dubai-healthcare-city/"
+     },
+     {
+      "name": "DCDC - Doctors Clinic Dubai Center (DHCC)",
+      "url": "https://doctorsclinicdubai.ae/services/dental-clinic",
+      "source": "https://drpriyankaclinic.ae/2026/03/06/top-5-dental-clinic-in-dubai-healthcare-city/"
+     },
+     {
+      "name": "The Dental Center DHCC",
+      "url": "https://www.okadoc.com/en-ae/clinic/dubai/the-dental-center-dhcc-dubai",
+      "source": "https://www.okadoc.com/en-ae/clinic/dubai/the-dental-center-dhcc-dubai"
+     },
+     {
+      "name": "Dr. Michael's Dental Clinic (Jumeirah / Umm Suqeim, 4 branches)",
+      "url": "https://www.drmichaels.com/",
+      "source": "https://www.doctify.com/en-ae/find/dentistry/dubai-healthcare-city-dhcc/practices (DHCC listing) + https://www.drmichaels.com/dental-clinic-jumeirah"
+     },
+     {
+      "name": "The Dental Studio (Al Wasl Road)",
+      "url": "https://www.thedentalstudio.ae/",
+      "source": "https://www.thedentalstudio.ae/al-wasl-clinic/ (surfaced in 'best dental clinic Jumeirah/Al Wasl' search)"
+     }
+    ],
+    "notes": "Originally searched for a Jumeirah clinic; JSON-LD reveals the clinic is in DHCC. Hours Mon-Sat 09:00-18:00; phone +971 4 429 8288; priceRange 'AED 500 to AED 20000'. Body copy says 'Dubai dental clinic' without district - district must come from schema. Alternate single-clinic candidates were not found (Dr Michael's, Dr Joy, Dental Studio, Nicolas & Asp are all multi-branch)."
+   }
+  },
+  {
+   "id": "05-dubai-b2b-saas-alaan",
+   "url": "https://www.alaan.com/",
+   "expect": {
+    "brand": [
+     "Alaan"
+    ],
+    "kinds": [
+     "b2b_saas_software",
+     "finance_insurance"
+    ],
+    "city": [
+     "Dubai"
+    ],
+    "area": [],
+    "country": "AE",
+    "scopes": [
+     "national",
+     "international",
+     "regional",
+     "multi-country"
+    ],
+    "placeBound": false,
+    "healthcareWordsAllowed": false,
+    "tiers": [
+     "country"
+    ]
+   },
+   "researched": {
+    "brand": "Alaan",
+    "location": {
+     "neighborhood": null,
+     "district": null,
+     "city": "Dubai",
+     "region": "Dubai",
+     "country": "United Arab Emirates"
+    },
+    "industry": "B2B fintech / SaaS > Spend management, corporate cards & AP automation",
+    "businessType": "Venture-backed B2B SaaS/fintech, regional (UAE + KSA sites, EN/AR), self-serve + enterprise sales, published pricing",
+    "services": [
+     "Corporate cards (SuperCard) with cashback",
+     "Expense management (OCR receipt capture, approvals)",
+     "Accounts payable automation / SuperPay",
+     "AI-native business account",
+     "Accounting integrations (Xero, QuickBooks, Zoho Books, NetSuite, Odoo, SAP, Dynamics 365)",
+     "Alaan Intelligence (AI spend analytics)",
+     "Corporate tax & savings calculators",
+     "Pricing tiers: Starter AED 0/mo, Premium AED 499/mo, Enterprise custom"
+    ],
+    "scope": "regional (Middle East: UAE & Saudi Arabia; '3000+ companies across the Middle East')",
+    "competitors": [
+     {
+      "name": "Pemo",
+      "url": "https://www.pemo.io/",
+      "source": "https://www.pemo.io/post/alaan-alternatives",
+      "tier": "country"
+     },
+     {
+      "name": "Qashio",
+      "url": "https://www.qashio.com/",
+      "source": "https://fintechnews.ae/32573/payments/corporate-credit-cards-uae/",
+      "tier": "country"
+     },
+     {
+      "name": "Zoho Expense (UAE)",
+      "url": "https://www.zoho.com/ae/expense/",
+      "source": "https://www.pemo.io/post/zoho-expense-alternatives",
+      "tier": "country"
+     },
+     {
+      "name": "Bayzat (HR + expense management, Dubai)",
+      "url": "https://www.bayzat.com/",
+      "source": "https://www.greythr.com/middle-eastalternatives/bayzat/ (HR/payroll context; overlaps on expense mgmt)",
+      "tier": "country"
+     }
+    ],
+    "notes": "Chosen over Bayzat because Bayzat's /pricing and /plans are 404 (it does have /case-studies). Ziina /pricing 404; Elevatus /pricing redirects home; keyper.io redirects to an Austrian company. Pemo (https://www.pemo.io/pricing 200, 13.7k chars) and Qashio (https://www.qashio.com/pricing 200) are equally usable alternates. Office street address is NOT exposed on the homepage/pricing page (only 'Middle East' / UAE + KSA locale switch) - expect pipeline to output city=Dubai from context, not from schema. Customers page: /customer-stories (Al Barari, Hello Chef, Washmen)."
+   }
+  },
+  {
+   "id": "06-dubai-edge-multibranch-tips-and-toes",
+   "url": "https://www.tipsandtoes.com/",
+   "expect": {
+    "brand": [
+     "Tips & Toes",
+     "Tips and Toes"
+    ],
+    "kinds": [
+     "personal_care_wellness"
+    ],
+    "city": [
+     "Dubai"
+    ],
+    "area": [],
+    "country": "AE",
+    "scopes": [
+     "local",
+     "regional",
+     "national"
+    ],
+    "placeBound": true,
+    "healthcareWordsAllowed": false,
+    "tiers": [
+     "city",
+     "country"
+    ]
+   },
+   "researched": {
+    "brand": "Tips & Toes",
+    "location": {
+     "neighborhood": "Al Faris Building, 3rd Floor (head office)",
+     "district": "Arjan, Al Barsha South",
+     "city": "Dubai",
+     "region": "Dubai",
+     "country": "United Arab Emirates"
+    },
+    "industry": "Personal care & beauty > Nail, hair, spa & beauty salon chain",
+    "businessType": "Multi-branch regional chain: 44 branches across 4 UAE emirates + Saudi Arabia (separate KSA site), award-winning, memberships & gift cards; HQ in Dubai",
+    "services": [
+     "Nail care (classic/Soigne manicure & pedicure, hands & feet treatments)",
+     "Nail extensions (acrylic, gel)",
+     "Hair services (keratin, colour, basics)",
+     "Facials (HydraFacial, Comfort Zone, Nano Meso, Brazilian Fit Firming)",
+     "Massage rituals & Moroccan/Turkish hammam",
+     "Waxing, threading, halawa, henna",
+     "Brows & lashes (HD Brows, tinting)",
+     "LPG body/face, make-up, membership & gift cards"
+    ],
+    "scope": "regional (UAE + Saudi Arabia)",
+    "competitors": [
+     {
+      "name": "NStyle Beauty Lounge",
+      "url": "https://www.nstyleintl.com/",
+      "source": "https://www.bayut.com/mybayut/best-nail-salons-dubai/",
+      "tier": [
+       "city",
+       "country"
+      ]
+     },
+     {
+      "name": "Sisters Beauty Lounge",
+      "url": "https://www.sistersbeautylounge.com/",
+      "source": "https://www.bayut.com/mybayut/best-nail-salons-dubai/",
+      "tier": [
+       "city",
+       "country"
+      ]
+     },
+     {
+      "name": "The Nail Spa",
+      "url": "https://www.thenailspa.com/",
+      "source": "https://www.bayut.com/mybayut/best-nail-salons-dubai/",
+      "tier": [
+       "city",
+       "country"
+      ]
+     },
+     {
+      "name": "Dollhouse",
+      "url": "https://www.dollhouse.ae/",
+      "source": "https://www.bayut.com/mybayut/best-nail-salons-dubai/",
+      "tier": [
+       "city",
+       "country"
+      ]
+     },
+     {
+      "name": "N.Bar",
+      "url": "https://www.nbar.com/",
+      "source": "https://www.bayut.com/mybayut/best-nail-salons-dubai/",
+      "tier": [
+       "city",
+       "country"
+      ]
+     }
+    ],
+    "notes": "EDGE CASE: pipeline must output a chain (44 branches, store locator, franchise-like scale) with HQ location, not a single salon. JSON-LD HairSalon uses the HQ office address (Arjan) and hours Mo-Su 09:00-21:00; phone +971 4 399 0550. Competitor URLs not curl-verified (names sourced from Bayut)."
+   }
+  },
+  {
+   "id": "07-london-independent-restaurant-quality-chop-house",
+   "url": "https://thequalitychophouse.com/",
+   "expect": {
+    "brand": [
+     "Quality Chop House"
+    ],
+    "kinds": [
+     "restaurant_food_beverage"
+    ],
+    "city": [
+     "London"
+    ],
+    "area": [
+     "Farringdon",
+     "Clerkenwell",
+     "Exmouth"
+    ],
+    "country": "GB",
+    "scopes": [
+     "hyperlocal",
+     "local"
+    ],
+    "placeBound": true,
+    "healthcareWordsAllowed": false
+   },
+   "researched": {
+    "brand": "The Quality Chop House",
+    "location": {
+     "neighborhood": "Farringdon Road (Exmouth Market end), EC1R 3EA",
+     "district": "Clerkenwell / Farringdon (London Borough of Islington)",
+     "city": "London",
+     "region": "England",
+     "country": "United Kingdom"
+    },
+    "industry": "Food & beverage > Restaurant > Modern British chop house / wine-led",
+    "businessType": "Independent restaurant (opened 1869, re-opened 2012) within the small Woodhead group (Portland, Clipstone, Quality Wines); Michelin Guide listed; Grade II listed interior",
+    "services": [
+     "A la carte dinner (Mon-Sat)",
+     "Weekday set lunch (3 courses GBP 29)",
+     "Sunday roast set lunch (GBP 59)",
+     "GBP 90 classics menu / GBP 125 feasting menu",
+     "Wine list & adjoining wine bar (Quality Wines)",
+     "Private dining room",
+     "Vouchers & events"
+    ],
+    "scope": "local (London)",
+    "competitors": [
+     {
+      "name": "Moro (Exmouth Market)",
+      "url": "https://www.moro.co.uk/",
+      "source": "https://www.hot-dinners.com/London-restaurants/Shoreditch-Clerkenwell/quality-chop-house-farringdon-road-exmouth-market"
+     },
+     {
+      "name": "Sessions Arts Club (Clerkenwell)",
+      "url": "https://sessionsartsclub.com/",
+      "source": "https://www.hot-dinners.com/London-restaurants/Shoreditch-Clerkenwell/quality-chop-house-farringdon-road-exmouth-market"
+     },
+     {
+      "name": "Luca (Clerkenwell)",
+      "url": "https://luca.restaurant/",
+      "source": "https://www.hot-dinners.com/London-restaurants/Shoreditch-Clerkenwell/quality-chop-house-farringdon-road-exmouth-market"
+     },
+     {
+      "name": "The Eagle (Farringdon Road)",
+      "url": "https://theeaglefarringdon.co.uk/",
+      "source": "https://www.hot-dinners.com/London-restaurants/Shoreditch-Clerkenwell/quality-chop-house-farringdon-road-exmouth-market"
+     },
+     {
+      "name": "St. JOHN Smithfield",
+      "url": "https://stjohnrestaurant.com/",
+      "source": "https://www.thegoodfoodguide.co.uk/restaurant/quality-chop-house/id/19885 (Clerkenwell peer set; stjohnrestaurant.com verified live: Shopify, multi-site)"
+     }
+    ],
+    "notes": "Phone 020 7278 1452; hours listed on home (Mon dinner only, Tue-Sat lunch+dinner, Sun lunch). Email is Cloudflare-obfuscated ('[email protected]') - extraction trap. 'OUR GROUP / OUR SITES' links could tempt a pipeline to label it a chain. Rejected alternates: The Clove Club (Next.js JS shell, 44 visible chars - FLAG), Brawn (WordPress but only ~1k visible chars), St. JOHN (Shopify, 4 sites)."
+   }
+  },
+  {
+   "id": "08-bangalore-salon-hair-boutique-koramangala",
+   "url": "https://www.hairboutiqueunisexsalon.in/",
+   "expect": {
+    "brand": [
+     "Hair Boutique"
+    ],
+    "kinds": [
+     "personal_care_wellness"
+    ],
+    "city": [
+     "Bengaluru",
+     "Bangalore"
+    ],
+    "area": [
+     "Koramangala"
+    ],
+    "country": "IN",
+    "scopes": [
+     "hyperlocal",
+     "local"
+    ],
+    "placeBound": true,
+    "healthcareWordsAllowed": false
+   },
+   "researched": {
+    "brand": "Hair Boutique Salon Koramangala",
+    "location": {
+     "neighborhood": "KHB Colony, 7th Block, Koramangala (62, 1st Floor, 1st Main Rd, next to Corner House)",
+     "district": "Koramangala",
+     "city": "Bengaluru (Bangalore)",
+     "region": "Karnataka",
+     "country": "India",
+     "coords": {
+      "lat": 12.936687745639407,
+      "lng": 77.61507265767143,
+      "source": "JSON-LD LocalBusiness geo"
+     }
+    },
+    "industry": "Personal care & beauty > Unisex hair & beauty salon",
+    "businessType": "Independent single-location neighbourhood salon (men & women), open Mon-Sun 10:00-21:00",
+    "services": [
+     "Haircuts & styling (men & women)",
+     "Hair colour",
+     "Hair treatments",
+     "Skincare / facials",
+     "Makeup (party & bridal)",
+     "Nail art & nail care",
+     "Men's grooming"
+    ],
+    "scope": "hyper-local (Koramangala, Bengaluru)",
+    "competitors": [
+     {
+      "name": "Bodycraft Salon, Spa & Clinic - Koramangala",
+      "url": "https://www.bodycraft.co.in/location-salon/bengaluru/spa-and-salon-in-koramangala",
+      "source": "https://lbb.in/bangalore/salons-in-koramangala/"
+     },
+     {
+      "name": "BBLUNT Koramangala",
+      "url": "https://salons.bblunt.com/bblunt/salons-in-bengaluru/salons-in-koramangala/bblunt-salon-in-koramangala-bengaluru--0fe2dbb6-82d7-414a-ad02-c3180f6aeba7/home",
+      "source": "https://lbb.in/bangalore/salons-in-koramangala/"
+     },
+     {
+      "name": "Straight Studio (8 Bangalore outlets incl. Koramangala)",
+      "url": "https://straight-studio.com/",
+      "source": "https://lbb.in/bangalore/salons-in-koramangala/"
+     },
+     {
+      "name": "Play Salon (Bangalore chain, 10 outlets)",
+      "url": "https://www.playsalon.in/",
+      "source": "https://www.quora.com/What-is-the-best-salon-for-getting-a-haircut-near-Indiranagar-Bangalore (Bangalore salon roundups) + playsalon.in verified live"
+     },
+     {
+      "name": "Pairs Salon (Koramangala, Bellandur, Indiranagar)",
+      "url": "https://pairssalon.com/",
+      "source": "https://lbb.in/bangalore/salons-in-koramangala/ (pairssalon.com returns HTTP 403 to curl)"
+     }
+    ],
+    "notes": "TRAPS: two phone numbers on page - 09071169992 (JSON-LD telephone +91 9071169992) and 08062757677 (footer; likely a Justdial/IVR tracking line); JSON-LD WebSite keywords contain 'galaxy salon' (template leftover). Alternate Bangalore candidates: Play Salon (Bangalore-HQ chain since 1999, WordPress, 5.7k chars), Zazzle (chain). DO NOT USE bouncesalon.in - domain is hijacked and redirects to a Vietnamese casino site (m99win1.com)."
+   }
+  },
+  {
+   "id": "09-new-york-local-service-aladdin-plumbing",
+   "url": "https://www.aladdinplumbingcorp.com/",
+   "expect": {
+    "brand": [
+     "Aladdin"
+    ],
+    "kinds": [
+     "local_service_home_trades"
+    ],
+    "city": [
+     "New York",
+     "Brooklyn"
+    ],
+    "area": [
+     "Park Slope",
+     "Brooklyn"
+    ],
+    "country": "US",
+    "scopes": [
+     "hyperlocal",
+     "local",
+     "regional"
+    ],
+    "placeBound": true,
+    "healthcareWordsAllowed": false
+   },
+   "researched": {
+    "brand": "Aladdin Plumbing Corp.",
+    "location": {
+     "neighborhood": "Park Slope",
+     "district": "Brooklyn",
+     "city": "New York City",
+     "region": "New York",
+     "country": "United States"
+    },
+    "industry": "Home services > Plumbing, heating & HVAC contractor",
+    "businessType": "Family-owned local contractor since 1976 (founder Gerald Gitli; sons Randy & Erik, NYC master plumber licenses), single office, brownstone specialists, 'As seen on This Old House'",
+    "services": [
+     "Residential plumbing repair & renovation",
+     "Restoration heating (boilers, radiators, steam)",
+     "HVAC / air conditioning for brownstones",
+     "Commercial plumbing & heating",
+     "Gas piping / water heaters",
+     "Virtual plumbing estimates & financing",
+     "Tiered service plans ('One/Two/Three Wishes')"
+    ],
+    "scope": "local (Brooklyn / NYC)",
+    "competitors": [
+     {
+      "name": "A Good Plumber Inc. (Brooklyn)",
+      "url": "https://agoodplumber.com/",
+      "source": "https://homeguide.com/ny/brooklyn/plumbers/"
+     },
+     {
+      "name": "Parkset Plumbing (Manhattan, Brooklyn & Queens)",
+      "url": "https://www.parksetplumbing.com/",
+      "source": "https://www.expertise.com/home-improvement/plumbing/new-york/brooklyn"
+     },
+     {
+      "name": "CBB Plumbing Corp (Brooklyn)",
+      "url": null,
+      "source": "https://www.expertise.com/home-improvement/plumbing/new-york/brooklyn"
+     },
+     {
+      "name": "Franco Belli Plumbing & Heating & Sons (Brooklyn)",
+      "url": null,
+      "source": "https://www.expertise.com/home-improvement/plumbing/new-york/brooklyn"
+     }
+    ],
+    "notes": "Street address is NOT printed on home or contact page (contact page only has a 'Street Address' form field) - expect neighborhood from copy ('Park Slope, Brooklyn'). Phone (718) 783-4621. A Good Plumber (agoodplumber.com) is an equally good alternate (WordPress/Elementor, 7.2k chars; verify.sh flagged BOT_BLOCK only because the word 'captcha' appears in a form)."
+   }
+  },
+  {
+   "id": "10-singapore-clinic-smilefocus",
+   "url": "https://www.smilefocus.com.sg/",
+   "expect": {
+    "brand": [
+     "Smilefocus"
+    ],
+    "kinds": [
+     "healthcare_medical"
+    ],
+    "city": [
+     "Singapore"
+    ],
+    "area": [
+     "Orchard",
+     "Camden",
+     "Tanglin"
+    ],
+    "country": "SG",
+    "scopes": [
+     "hyperlocal",
+     "local",
+     "national"
+    ],
+    "placeBound": true,
+    "healthcareWordsAllowed": true
+   },
+   "researched": {
+    "brand": "Smilefocus",
+    "location": {
+     "neighborhood": "Camden Medical Centre, #08-02/03 & #08-07, 1 Orchard Boulevard, Singapore 248649",
+     "district": "Tanglin / Orchard (Central Region)",
+     "city": "Singapore",
+     "region": "Central Region",
+     "country": "Singapore"
+    },
+    "industry": "Healthcare > Dental clinic (family, cosmetic & orthodontic dentistry)",
+    "businessType": "Private dental clinic, single location, expat-oriented ('New to Singapore' page, insurance direct billing), bilingual EN/ZH; affiliated with Qualitas Health network",
+    "services": [
+     "Cosmetic dentistry (veneers, whitening, digital smile design)",
+     "Family & children's dentistry",
+     "Restorative (implants, crowns, bridges, dentures, root canal)",
+     "Orthodontics (braces, Invisalign / clear aligners)",
+     "Dental emergencies",
+     "TMJ & bruxism",
+     "Nervous-patient care",
+     "Digital imaging / X-rays"
+    ],
+    "scope": "local (Singapore, expat community)",
+    "competitors": [
+     {
+      "name": "TP Dental (Ngee Ann City, Orchard Road)",
+      "url": "https://www.tpdental.com.sg/",
+      "source": "https://threebestrated.sg/dental-clinics-in-orchard-road"
+     },
+     {
+      "name": "Atria-City Dental Group (Orchard)",
+      "url": "https://atria-city.com/",
+      "source": "https://www.whatclinic.com/dentists/singapore/central-singapore/orchard-road"
+     },
+     {
+      "name": "The Dentist @ Orchard",
+      "url": "https://dentistatorchard.com/",
+      "source": "https://threebestrated.sg/dental-clinics-in-orchard-road"
+     },
+     {
+      "name": "Orchard Scotts Dental (Wheelock Place)",
+      "url": "https://www.orchardscottsdental.com/",
+      "source": "https://terris.sg/blog/best-dental-clinics-singapore"
+     },
+     {
+      "name": "Specialist Dental Group (Mount Elizabeth)",
+      "url": "https://www.specialistdentalgroup.com/",
+      "source": "https://terris.sg/blog/best-dental-clinics-singapore"
+     }
+    ],
+    "notes": "Phones printed without country code (6733 9882 / 6834 0877) - normalisation trap (+65). Detailed 'Find us' directions (car park, bus numbers) are good address signals. No Dentist/LocalBusiness schema."
+   }
+  },
+  {
+   "id": "11-sydney-restaurant-firedoor",
+   "url": "https://firedoor.com.au/",
+   "expect": {
+    "brand": [
+     "Firedoor"
+    ],
+    "kinds": [
+     "restaurant_food_beverage"
+    ],
+    "city": [
+     "Sydney"
+    ],
+    "area": [
+     "Surry Hills"
+    ],
+    "country": "AU",
+    "scopes": [
+     "hyperlocal",
+     "local"
+    ],
+    "placeBound": true,
+    "healthcareWordsAllowed": false
+   },
+   "researched": {
+    "brand": "Firedoor",
+    "location": {
+     "neighborhood": "23-33 Mary Street",
+     "district": "Surry Hills",
+     "city": "Sydney",
+     "region": "New South Wales",
+     "country": "Australia"
+    },
+    "industry": "Food & beverage > Restaurant > Wood-fired modern Australian / steak",
+    "businessType": "Independent chef-owned restaurant (Lennox Hastie), single site plus sister bar Gildas; award-winning (Three Glasses wine list 2024; 'third best steak restaurant in the world')",
+    "services": [
+     "Dinner Wed-Sat, lunch Fri-Sat",
+     "Three-course chef's set lunch (AUD 155 pp)",
+     "A la carte wood-fired menu",
+     "Reservations & reservation-release notices",
+     "Private events",
+     "Online shop (Ironclad fire set pre-order)",
+     "Sister venue Gildas"
+    ],
+    "scope": "local (Sydney) with destination-dining pull",
+    "competitors": [
+     {
+      "name": "Nomad (Surry Hills)",
+      "url": "https://nomadsydney.com/",
+      "source": "https://www.sydneytourism.org/sydney-restaurants-food-guide/"
+     },
+     {
+      "name": "Ester (Chippendale)",
+      "url": "https://ester-restaurant.com.au/",
+      "source": "https://www.sydneytourism.org/sydney-restaurants-food-guide/"
+     },
+     {
+      "name": "Marta (Rushcutters Bay)",
+      "url": "https://www.marta.com.au/",
+      "source": "https://www.sydneytourism.org/sydney-restaurants-food-guide/"
+     },
+     {
+      "name": "Bert's Bar & Brasserie",
+      "url": "https://www.merivale.com/venues/berts/",
+      "source": "https://www.sydneytourism.org/sydney-restaurants-food-guide/"
+     },
+     {
+      "name": "Porteno (Surry Hills)",
+      "url": "https://www.porteno.com.au/",
+      "source": "https://www.theurbanlist.com/sydney/a-list/best-restaurants-surry-hills (porteno.com.au verified live but Squarespace / ~450 visible chars - JS-shell-ish)"
+     }
+    ],
+    "notes": "Phone 02 8204 0800; info@firedoor.com.au. TRAPS: no <html lang> attribute; landing splash offers 'Enter Firedoor Site / Enter Gildas Site' (two brands on one domain); shop promo banner at top of page. Rejected alternate: Porteno (Squarespace, thin SSR text)."
+   }
+  },
+  {
+   "id": "12-toronto-b2b-loopio",
+   "url": "https://loopio.com/",
+   "expect": {
+    "brand": [
+     "Loopio"
+    ],
+    "kinds": [
+     "b2b_saas_software"
+    ],
+    "city": [],
+    "area": [],
+    "country": null,
+    "scopes": [
+     "national",
+     "international",
+     "global",
+     "multi-country"
+    ],
+    "placeBound": false,
+    "healthcareWordsAllowed": false
+   },
+   "researched": {
+    "brand": "Loopio",
+    "location": {
+     "neighborhood": "PO Box 17079 (no street office published)",
+     "district": "Downtown Toronto (M5E 1Y2)",
+     "city": "Toronto",
+     "region": "Ontario",
+     "country": "Canada"
+    },
+    "industry": "B2B SaaS > RFP / proposal response & sales-content automation",
+    "businessType": "B2B SaaS vendor, mid-market & enterprise, global customer base ('1,700+ companies'), HQ Toronto; published pricing tiers + customer stories",
+    "services": [
+     "RFP response automation",
+     "Security questionnaires & due-diligence questionnaires",
+     "Sales proposals",
+     "Sales knowledge / content library",
+     "Loopio AI (generative answers)",
+     "Integrations (Salesforce, HubSpot, Dynamics 365, Seismic, Highspot, Slack, Glean)",
+     "Pricing plans page & customer experience/support"
+    ],
+    "scope": "global",
+    "competitors": [
+     {
+      "name": "Responsive (formerly RFPIO)",
+      "url": "https://www.responsive.io/",
+      "source": "https://www.pandadoc.com/blog/loopio-competitors/"
+     },
+     {
+      "name": "Qvidian (Upland)",
+      "url": "https://uplandsoftware.com/qvidian/",
+      "source": "https://www.pandadoc.com/blog/loopio-competitors/"
+     },
+     {
+      "name": "QorusDocs",
+      "url": "https://www.qorusdocs.com/",
+      "source": "https://www.pandadoc.com/blog/loopio-competitors/"
+     },
+     {
+      "name": "Arphie",
+      "url": "https://www.arphie.ai/",
+      "source": "https://autorfp.ai/blog/best-loopio-alternatives"
+     },
+     {
+      "name": "AutoRFP.ai",
+      "url": "https://autorfp.ai/",
+      "source": "https://autorfp.ai/blog/best-loopio-alternatives"
+     }
+    ],
+    "notes": "'Toronto' appears ONLY on /contact/ (PO Box 17079, Toronto, Ontario M5E 1Y2) - homepage has no location signal, so a pipeline must crawl the contact page. /pricing/ is live (8.8k chars). Loopio's own 'Loopio vs Responsive / Qvidian / RocketDocs / Conveyor / Inventive' comparison pages corroborate the competitor set. Alternate: FreshBooks (Toronto; 1.37 MB, 207 script tags, Next.js SSR)."
+   }
+  },
+  {
+   "id": "13-berlin-service-physiowerk",
+   "url": "https://www.physiowerk-berlin.de/",
+   "expect": {
+    "brand": [
+     "Physiowerk"
+    ],
+    "kinds": [
+     "healthcare_medical",
+     "fitness_recreation",
+     "personal_care_wellness"
+    ],
+    "city": [
+     "Berlin"
+    ],
+    "area": [
+     "Prenzlauer Berg",
+     "Helmholtz",
+     "Hiddenseer"
+    ],
+    "country": "DE",
+    "scopes": [
+     "hyperlocal",
+     "local"
+    ],
+    "placeBound": true,
+    "healthcareWordsAllowed": true
+   },
+   "researched": {
+    "brand": "Physiowerk Berlin (Physiotherapiepraxis Stefanie Knecht)",
+    "location": {
+     "neighborhood": "Helmholtzkiez (Hiddenseer Str. 2, 10437)",
+     "district": "Prenzlauer Berg (Bezirk Pankow)",
+     "city": "Berlin",
+     "region": "Berlin",
+     "country": "Germany"
+    },
+    "industry": "Healthcare > Physiotherapy practice (Physiotherapie / Manuelle Therapie)",
+    "businessType": "Independent owner-run practice (Stefanie Knecht), single location, German-language site, statutory + private patients",
+    "services": [
+     "Manuelle Therapie",
+     "Manuelle Lymphdrainage / Komplexe Entstauungstherapie",
+     "Krankengymnastik am Gerat & Schlingentisch",
+     "CMD / Kiefergelenkbehandlung",
+     "Klassische Massage, Bindegewebsmassage, Fussreflexzonentherapie",
+     "PNF, Bobath (Erwachsene), McKenzie, FBL Klein-Vogelbach, Bruggertherapie",
+     "Elektrotherapie / Ultraschall, Thermotherapie (Fango, Heisse Rolle)",
+     "Ruckbildungsgymnastik / Beckenbodentraining"
+    ],
+    "scope": "hyper-local (Prenzlauer Berg, Berlin)",
+    "competitors": [
+     {
+      "name": "Physiotherapie Prenzlauer Berg Heilmann (Danziger Str. 139)",
+      "url": "https://physiotherapie-heilmann.de/",
+      "source": "https://www.doctolib.de/praxis/berlin/physiotherapie-prenzlauer-berg-heilmann"
+     },
+     {
+      "name": "Praxis fur Gesundheit (Kastanienallee 88)",
+      "url": "https://praxis-fuer-gesundheit.berlin/",
+      "source": "https://praxis-fuer-gesundheit.berlin/ (surfaced in 'Physiotherapie Berlin Prenzlauer Berg Praxis' search)"
+     },
+     {
+      "name": "Therapiezentrum Prenzlauer Allee (Prenzlauer Allee 90)",
+      "url": "https://www.physiotherapie-prenzlauerallee.de/",
+      "source": "https://www.physiotherapie-prenzlauerallee.de/ (search result)"
+     },
+     {
+      "name": "PTT - PhysioTherapie & Training",
+      "url": "https://www.ptt-praxis.de/",
+      "source": "https://www.ptt-praxis.de/ (search result)"
+     },
+     {
+      "name": "Nils Heiberg - Ganzheitliche Physiotherapie",
+      "url": "https://www.nilsheiberg.de/",
+      "source": "https://www.nilsheiberg.de/ (search result)"
+     }
+    ],
+    "notes": "Phone 030 567 305 30; info@physiowerk-berlin.de; footer '(c) 2018' (stale). Services page is /unser_angebot.html (not /angebot.html). Good test for German-language extraction and 'Kiez'-level neighborhood. TRAP on competitor site: physiotherapie-heilmann.de serves gzip without honouring curl's Accept-Encoding, so a naive fetch gets binary garbage (use --compressed)."
+   }
+  },
+  {
+   "id": "14-regional-uk-estate-agent-bradleys",
+   "url": "https://www.bradleys-estate-agents.co.uk/",
+   "expect": {
+    "brand": [
+     "Bradleys"
+    ],
+    "kinds": [
+     "real_estate_property"
+    ],
+    "city": [],
+    "area": [],
+    "country": "GB",
+    "scopes": [
+     "regional",
+     "local",
+     "national"
+    ],
+    "placeBound": true,
+    "healthcareWordsAllowed": false
+   },
+   "researched": {
+    "brand": "Bradleys Estate Agents",
+    "location": {
+     "neighborhood": null,
+     "district": "South West England (Devon, Cornwall & Somerset); HQ Exmouth, Devon",
+     "city": "Exmouth (HQ) - ~30 branches incl. Exeter St Thomas, Exmouth, Honiton, St Ives",
+     "region": "Devon / Cornwall / Somerset",
+     "country": "United Kingdom"
+    },
+    "industry": "Real estate > Estate & letting agency (residential sales, lettings, mortgages, conveyancing, auctions, surveying)",
+    "businessType": "Independent regional multi-branch chain (~30 branches across 3 counties); award-winning (Negotiator Awards Best Large Agency); part of BEA Group (customerservices@beagroup.co.uk)",
+    "services": [
+     "Residential sales",
+     "Lettings & property management / block management",
+     "Mortgage advice",
+     "Conveyancing / legal services",
+     "New homes & land sales",
+     "Luxury / country homes",
+     "Auctions & investment sales",
+     "Chartered surveyors / valuations (incl. probate)"
+    ],
+    "scope": "regional (Devon, Cornwall, Somerset)",
+    "competitors": [
+     {
+      "name": "Stags (25 West Country offices)",
+      "url": "https://www.stags.co.uk/",
+      "source": "https://www.rightmove.co.uk/estate-agents/Honiton.html (lists Stags, Fulfords, Bradleys side by side)"
+     },
+     {
+      "name": "Fulfords (Countrywide; Devon & Somerset)",
+      "url": "https://www.fulfords.co.uk/",
+      "source": "https://www.rightmove.co.uk/estate-agents/Exmouth.html"
+     },
+     {
+      "name": "Kivells (Devon & Cornwall, est. 1885)",
+      "url": "https://www.kivells.com/",
+      "source": "https://www.kivells.com/ (surfaced in 'largest estate agents Devon Cornwall' search)"
+     },
+     {
+      "name": "Miller Countrywide / Stratton Creber",
+      "url": "https://www.millercountrywide.co.uk/",
+      "source": "https://www.fulfords.co.uk/about-us/country-and-waterside-prestige (names Miller, Stratton Creber and Fulfords as associated Countrywide agents)"
+     },
+     {
+      "name": "Links Estate Agents (Exmouth)",
+      "url": null,
+      "source": "https://www.rightmove.co.uk/estate-agents/Exmouth.html"
+     }
+    ],
+    "notes": "Head-office street address is not on the homepage; 'Exmouth' and 'Exeter St Thomas' appear in branch links. Site banner about telephone-system upgrade appears at top of every page (noise). Alternate regional candidate verified: Frost Bank (Texas-only bank, https://www.frostbank.com/, 10k chars, Cloudflare, 200)."
+   }
+  },
+  {
+   "id": "15-national-uk-greggs",
+   "url": "https://www.greggs.co.uk/",
+   "expect": {
+    "brand": [
+     "Greggs"
+    ],
+    "kinds": [
+     "restaurant_food_beverage",
+     "consumer_brand_manufacturer",
+     "local_retail_store"
+    ],
+    "city": [],
+    "area": [],
+    "country": "GB",
+    "scopes": [
+     "national",
+     "regional"
+    ],
+    "placeBound": null,
+    "healthcareWordsAllowed": false,
+    "tiers": [
+     "country"
+    ]
+   },
+   "researched": {
+    "brand": "Greggs",
+    "location": {
+     "neighborhood": "Quorum Business Park, Longbenton (HQ - not on homepage)",
+     "district": null,
+     "city": "Newcastle upon Tyne",
+     "region": "England",
+     "country": "United Kingdom"
+    },
+    "industry": "Food & beverage > Food-to-go bakery chain / quick-service retail",
+    "businessType": "National multi-site chain (2,500+ shops), listed plc (Greggs plc), app-based ordering, delivery partners, charitable foundation",
+    "services": [
+     "Breakfast range",
+     "Savouries & bakes (sausage rolls, steak bakes)",
+     "Sandwiches & salads",
+     "Sweet treats",
+     "Hot food & drinks",
+     "Greggs App / click & collect / delivery ('Ways to order')",
+     "Gift cards",
+     "Greggs Foundation"
+    ],
+    "scope": "national (United Kingdom)",
+    "competitors": [
+     {
+      "name": "Pret A Manger",
+      "url": "https://www.pret.co.uk/",
+      "source": "https://www.owler.com/company/greggs/competitors",
+      "tier": "country"
+     },
+     {
+      "name": "Costa Coffee",
+      "url": "https://www.costa.co.uk/",
+      "source": "https://craft.co/greggs/competitors",
+      "tier": "country"
+     },
+     {
+      "name": "Subway UK",
+      "url": "https://www.subway.com/en-GB",
+      "source": "https://greggsmenus.co.uk/greggs-competitors/",
+      "tier": "country"
+     },
+     {
+      "name": "M&S Food",
+      "url": "https://www.marksandspencer.com/",
+      "source": "https://greggsmenus.co.uk/greggs-competitors/",
+      "tier": "country"
+     },
+     {
+      "name": "Starbucks UK",
+      "url": "https://www.starbucks.co.uk/",
+      "source": "https://www.owler.com/company/greggs/competitors",
+      "tier": "country"
+     }
+    ],
+    "notes": "TRAP: greggs.co.uk 301s to greggs.com - domain/brand matching must survive the redirect. Homepage visible text is mostly navigation (2.6k chars); product data hydrates client-side. Footer 'Copyright 2013 - 2026 Greggs plc'."
+   }
+  },
+  {
+   "id": "16-global-nike",
+   "url": "https://www.nike.com/",
+   "expect": {
+    "brand": [
+     "Nike"
+    ],
+    "kinds": [
+     "consumer_brand_manufacturer",
+     "ecommerce_dtc_retail"
+    ],
+    "city": [],
+    "area": [],
+    "country": null,
+    "scopes": [
+     "global",
+     "international",
+     "multi-country"
+    ],
+    "placeBound": false,
+    "healthcareWordsAllowed": false,
+    "tiers": [
+     "country"
+    ]
+   },
+   "researched": {
+    "brand": "Nike",
+    "location": {
+     "neighborhood": "One Bowerman Drive (HQ - not on site)",
+     "district": null,
+     "city": "Beaverton",
+     "region": "Oregon",
+     "country": "United States"
+    },
+    "industry": "Consumer goods > Sportswear: athletic footwear, apparel & equipment (brand + DTC e-commerce)",
+    "businessType": "Global multinational brand/manufacturer with owned e-commerce, retail stores, membership app and sub-brands (Jordan, ACG, NOCTA); UAE storefront operated by GMG",
+    "services": [
+     "Footwear (Air Force 1, Air Jordan, Air Max, Pegasus, Vomero, Dunk, Mercurial)",
+     "Apparel & matching sets",
+     "Equipment & accessories",
+     "Jordan / ACG / NOCTA sub-brands",
+     "Nike App & membership",
+     "Store locator / retail",
+     "Sport-specific ranges (running, football, padel, swim)"
+    ],
+    "scope": "global",
+    "competitors": [
+     {
+      "name": "Adidas",
+      "url": "https://www.adidas.com/",
+      "source": "https://fourweekmba.com/nike-competitors/",
+      "tier": "country"
+     },
+     {
+      "name": "Puma",
+      "url": "https://www.puma.com/",
+      "source": "https://fourweekmba.com/nike-competitors/",
+      "tier": "country"
+     },
+     {
+      "name": "Under Armour",
+      "url": "https://www.underarmour.com/",
+      "source": "https://www.marketing91.com/top-10-nike-competitors/",
+      "tier": "country"
+     },
+     {
+      "name": "New Balance",
+      "url": "https://www.newbalance.com/",
+      "source": "https://wwd.com/footwear-news/shoe-industry-news/nike-adidas-puma-new-balance-ubs-global-survey-consumers-1238436741/",
+      "tier": "country"
+     },
+     {
+      "name": "Lululemon",
+      "url": "https://www.lululemon.com/",
+      "source": "https://fourweekmba.com/nike-competitors/",
+      "tier": "country"
+     }
+    ],
+    "notes": "BOT-BLOCK: curl to https://www.nike.com/ gets an Akamai 302 geo-redirect to /in/ (from this network) and then HTTP 403 'Access Denied' (errors.edgesuite.net) regardless of browser-like headers. https://www.nike.com/ae/ redirects to https://www.nike.ae/en/home/ (GMG-operated UAE store, Cloudflare) which returns 200 with 10.9k visible chars and JSON-LD Organization named 'Nike UAE Offical Website' (sic) - a pipeline must not treat the UAE storefront as the brand's HQ. Use as the 'global brand / blocked homepage / regional storefront' edge case."
+   }
+  }
+ ]
+}

@@ -1,0 +1,283 @@
+@import "tailwindcss";
+
+/*
+  Project Sun design tokens ("evidence intelligence").
+
+  Three families carry meaning, never decoration:
+    ink   the neutral ramp: type, hairlines, muted surfaces (warm-neutral, not blue)
+    sun   the brand accent: the target brand, the one stage-advancing action on a
+          page, evidence you can trust (quotes, highlights)
+    brand indigo, kept for interactive text (links, "See the answers →"),
+          selection and focus
+  ok / warn / danger are state only (outcomes, coverage gaps, errors).
+
+  Only the shades listed here exist. A missing shade renders nothing.
+*/
+@theme {
+  --color-ink-950: #0f1014;
+  --color-ink-900: #16181f;
+  --color-ink-800: #20232c;
+  --color-ink-700: #2c3039;
+  --color-ink-600: #3d4250;
+  --color-ink-500: #565c6c;
+  --color-ink-400: #767c8d;
+  --color-ink-300: #a3a8b6;
+  --color-ink-200: #d3d6de;
+  --color-ink-100: #e8e9ee;
+  --color-ink-50: #f4f4f6;
+
+  --color-brand-600: #4338ca;
+  --color-brand-500: #4f46e5;
+  --color-brand-400: #6366f1;
+  --color-brand-100: #e0e7ff;
+  --color-brand-50: #eef2ff;
+
+  --color-sun-900: #6b3306;
+  --color-sun-800: #87450a;
+  --color-sun-700: #a95a0b;
+  --color-sun-600: #cf720d;
+  --color-sun-500: #ed8a16;
+  --color-sun-400: #f5aa3d;
+  --color-sun-300: #f8c76f;
+  --color-sun-200: #fbe0a5;
+  --color-sun-100: #fdf1d4;
+  --color-sun-50: #fff9ed;
+
+  --color-ok-600: #15803d;
+  --color-ok-500: #16a34a;
+  --color-ok-100: #dcfce7;
+
+  --color-warn-600: #b45309;
+  --color-warn-500: #d97706;
+  --color-warn-100: #fef3c7;
+
+  --color-danger-600: #b91c1c;
+  --color-danger-500: #dc2626;
+  --color-danger-100: #fee2e2;
+
+  /* Answer-engine identity in Measure charts. Fixed per engine, never by
+     position, and distinct from sun (the target brand) and the status colours.
+     Validated as a categorical pair (dataviz six checks) on the white surface. */
+  --color-engine-chatgpt: #2a78d6;
+  --color-engine-gemini: #008300;
+
+  /* The page ground: warm paper, so white surfaces read as sheets on a desk. */
+  --color-canvas: #f3f2ee;
+  --color-paper: #faf9f6;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --shadow-float: 0 12px 40px -18px rgba(15, 16, 20, 0.35), 0 2px 6px -2px rgba(15, 16, 20, 0.12);
+  --shadow-sheet: 0 1px 2px rgba(15, 16, 20, 0.04);
+
+  /* Loading states (components/ui/loading-stage.tsx). Tailwind v4 turns
+     --animate-* into animate-* utilities and emits the keyframes on use. */
+  --animate-indeterminate: sun-indeterminate 1.4s ease-in-out infinite;
+  --animate-shimmer: sun-shimmer 1.6s linear infinite;
+  --animate-fade-in: sun-fade-in 240ms ease-out both;
+
+  @keyframes sun-indeterminate {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(300%); }
+  }
+  @keyframes sun-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  @keyframes sun-fade-in {
+    from { opacity: 0; transform: translateY(2px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "cv11", "ss01", "tnum" 0;
+}
+
+/* The marketing page keeps its white ground. */
+.marketing-page {
+  background: #fff;
+}
+
+* {
+  border-color: var(--color-ink-100);
+}
+
+::selection {
+  background: var(--color-sun-200);
+  color: var(--color-ink-950);
+}
+
+html { scroll-behavior: smooth; }
+
+.sun-grid {
+  background-image: linear-gradient(to right, rgba(15, 23, 42, 0.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: linear-gradient(to bottom, black, transparent 88%);
+}
+
+/* Skeleton placeholder. Under reduced motion the shimmer freezes (see the media
+   query below), which leaves this static gradient: still readable as loading. */
+.sun-skeleton {
+  background-image: linear-gradient(90deg, var(--color-ink-100) 25%, var(--color-ink-50) 50%, var(--color-ink-100) 75%);
+  background-size: 200% 100%;
+}
+
+.sun-mark { position: relative; display: grid; height: 1.65rem; width: 1.65rem; place-items: center; border-radius: 999px; background: #111827; }
+.sun-mark::before, .sun-mark::after, .sun-mark span::before, .sun-mark span::after { position: absolute; content: ""; height: 2px; width: 4px; border-radius: 999px; background: #f5aa3d; }
+.sun-mark::before { transform: translateX(-8px); }
+.sun-mark::after { transform: translateX(8px); }
+.sun-mark span::before { transform: translateY(-8px) rotate(90deg); }
+.sun-mark span::after { transform: translateY(8px) rotate(90deg); }
+.sun-mark span { height: 7px; width: 7px; border-radius: 999px; background: #f5aa3d; }
+
+@layer components {
+/* --- Type ---------------------------------------------------------------- */
+
+/* Page titles: tight, confident, one size on every stage. */
+.sun-title {
+  font-size: 1.75rem;
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.028em;
+  color: var(--color-ink-950);
+  text-wrap: balance;
+}
+@media (min-width: 640px) {
+  .sun-title { font-size: 2rem; }
+}
+
+/* Section eyebrows: small caps in the sun accent for stage context, ink for content. */
+.sun-eyebrow {
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Figures: tabular numerals, tight tracking. */
+.sun-figure {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+/* --- Surfaces ------------------------------------------------------------ */
+
+/* A sheet: the ordinary content surface. */
+.sun-sheet {
+  background: #fff;
+  border: 1px solid color-mix(in srgb, var(--color-ink-200) 75%, transparent);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-sheet);
+}
+
+/* An inset: a muted well inside a sheet (editors, alternatives, notes). */
+.sun-inset {
+  background: var(--color-paper);
+  border: 1px solid var(--color-ink-100);
+  border-radius: 0.75rem;
+}
+
+/* Evidence: a quote or a stored snippet the reader can trust. The rule is the
+   sun accent because evidence is the product's promise. */
+.sun-evidence {
+  background: color-mix(in srgb, var(--color-sun-50) 70%, #fff);
+  border: 1px solid var(--color-sun-200);
+  border-left: 3px solid var(--color-sun-400);
+  border-radius: 0.5rem 0.75rem 0.75rem 0.5rem;
+}
+
+/* The one dark panel a page may carry (a headline strip, a frozen-set banner). */
+.sun-ink {
+  background: radial-gradient(120% 140% at 100% 0%, rgba(245, 170, 61, 0.14), transparent 55%), var(--color-ink-900);
+  color: #fff;
+  border-radius: 1rem;
+}
+
+/* --- Tables ---------------------------------------------------------------
+   One table voice for every analytical view: small caps header, hairline
+   rows, quiet hover, numbers right-aligned and tabular. */
+.sun-table {
+  width: 100%;
+  font-size: 0.875rem;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.sun-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #fff;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-500);
+  border-bottom: 1px solid var(--color-ink-200);
+  line-height: 1.2;
+}
+.sun-table tbody td {
+  padding: 0.625rem 0.75rem;
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-ink-100);
+}
+.sun-table tbody tr:last-child td { border-bottom: 0; }
+.sun-table tbody tr:hover td { background: var(--color-paper); }
+.sun-table tbody tr.sun-table-group td {
+  padding: 0.375rem 0.75rem;
+  background: var(--color-ink-50);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-600);
+}
+.sun-table tbody tr.sun-table-group:hover td { background: var(--color-ink-50); }
+.sun-table .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sun-table thead th.num { text-align: right; }
+.sun-table tbody tr.is-target td { background: color-mix(in srgb, var(--color-sun-50) 80%, #fff); }
+.sun-table tbody tr.is-selected td { background: var(--color-brand-50); }
+
+/* Scroll shell for wide tables: the page never scrolls sideways. */
+.sun-scroll-x {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+}
+/* Focus on a dark surface. */
+.sun-ink .focus-ring:focus-visible {
+  outline-color: var(--color-sun-300);
+}
+
+/* Printing Measure (the report and answers views print as the page shows
+   them; nav, controls and drawers carry print:hidden). */
+@page { margin: 14mm; }
+@media print {
+  body { background: #fff; }
+  .sun-sheet { box-shadow: none; }
+  .sun-print-page { break-before: page; }
+  .sun-print-keep { break-inside: avoid; }
+  .sun-table thead th { position: static; }
+}

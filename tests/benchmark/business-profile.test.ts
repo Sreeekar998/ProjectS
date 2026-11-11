@@ -1,0 +1,153 @@
+import { describe, it, expect, beforeAll } from "vitest";
+import fs from "node:fs";
+import path from "node:path";
+import { FIXTURE_SITES, siteById } from "../../benchmarks/business-profile/fixtures/sites";
+import { FIXTURE_CASES } from "../../benchmarks/business-profile/manifest";
+import { runFixtureSite, scoreCase, renderFailures, renderScoreTable, type CaseScore } from "../../benchmarks/business-profile/harness";
+
+// The deterministic half of the Website Intelligence benchmark. It runs the
+// real planner, classifier, extractor, evidence builder and profile synthesis
+// over locally-defined sites, so CI never depends on a third-party website
+// being up, and a regression in extraction quality fails a build rather than
+// a live demo. The live half is `npm run benchmark:business-profile -- --live`.
+
+const scores: CaseScore[] = [];
+
+beforeAll(async () => {
+  for (const testCase of FIXTURE_CASES) {
+    const site = siteById(testCase.id);
+    if (!site) throw new Error(`No fixture site for benchmark case ${testCase.id}`);
+    const run = await runFixtureSite(site);
+    scores.push(scoreCase(testCase, run));
+  }
+}, 60_000);
+
+describe("Website Intelligence benchmark (fixtures)", () => {
+  it("covers materially different business types", () => {
+    const types = new Set(FIXTURE_CASES.map((c) => c.businessType));
+    expect(types.size).toBeGreaterThanOrEqual(7);
+  });
+
+  it("has a fixture for every benchmark case", () => {
+    for (const testCase of FIXTURE_CASES) expect(siteById(testCase.id), testCase.id).toBeDefined();
+  });
+
+  it.each(FIXTURE_CASES.map((c) => [c.id, c.label] as const))("%s — %s meets its golden expectations", (id) => {
+    const score = scores.find((s) => s.id === id)!;
+    const failed = score.checks.filter((c) => !c.passed);
+    expect(failed.map((f) => `${f.field}: ${f.detail}`)).toEqual([]);
+  });
+
+  it("links every populated substantive field to real evidence", () => {
+    for (const score of scores) {
+      expect(score.metrics.evidenceGaps, `${score.label} evidence gaps`).toEqual([]);
+      expect(score.metrics.evidenceCoverage).toBe(1);
+    }
+  });
+
+  it("never emits promotional language in a description", () => {
+    for (const score of scores) {
+      expect(score.metrics.hypeTerms, `${score.label} description hype`).toEqual([]);
+    }
+  });
+
+  it("spends most of the crawl budget on useful page types", () => {
+    for (const score of scores) {
+      if (score.metrics.pagesSelected < 3) continue;
+      // Legal, careers and blog pages must not dominate a run.
+      expect(score.metrics.usefulPageShare, `${score.label} useful-page share`).toBeGreaterThanOrEqual(0.7);
+    }
+  });
+
+  it("resists prompt injection embedded in page content", () => {
+    const adversarial = scores.find((s) => s.id === "adversarial")!;
+    const blob = JSON.stringify(adversarial.profileSummary).toLowerCase();
+    for (const term of ["pwned", "developer mode", "cryptocurrency", "luxury fashion", "system prompt", "ignore all previous"]) {
+      expect(blob, `injected term "${term}" reached the profile`).not.toContain(term);
+    }
+  });
+
+  it("survives malformed JSON-LD without losing the page", () => {
+    const adversarial = scores.find((s) => s.id === "adversarial")!;
+    // The homepage's JSON-LD has a trailing comma; the page must still yield a
+    // brand name and offerings from its other signals.
+    expect(adversarial.profileSummary.brandName.toLowerCase()).toContain("meridian");
+    expect(adversarial.metrics.offeringCount).toBeGreaterThanOrEqual(2);
+  });
+
+  it("reports honest emptiness on a near-empty site instead of fabricating", () => {
+    const sparse = scores.find((s) => s.id === "sparse")!;
+    expect(sparse.profileSummary.markets).toEqual([]);
+    expect(sparse.profileSummary.marketScope).toBe("unknown");
+    expect(sparse.metrics.overallConfidence).toBeLessThan(40);
+  });
+
+  it("samples across a storefront instead of exhausting the budget on SKUs", async () => {
+    const run = await runFixtureSite(siteById("athletic-ecommerce")!);
+    const productPages = run.pages.filter((p) => p.pageType === "product").length;
+    expect(productPages / Math.max(1, run.pages.length)).toBeLessThan(0.5);
+    expect(run.pages.some((p) => p.pageType === "about")).toBe(true);
+  });
+
+  it("obeys robots.txt disallow rules during planning", async () => {
+    const run = await runFixtureSite(siteById("athletic-ecommerce")!);
+    for (const url of run.selectedUrls) {
+      expect(url).not.toContain("/cart");
+      expect(url).not.toContain("/login");
+    }
+  });
+
+  it("produces a first useful field quickly on every fixture", () => {
+    for (const score of scores) {
+      if (score.metrics.evidenceItems === 0) continue;
+      expect(score.metrics.timeToFirstFieldMs, `${score.label}`).toBeLessThan(5_000);
+    }
+  });
+
+  it("writes the benchmark report", () => {
+    const report = [
+      "# Website Intelligence benchmark — deterministic fixtures",
+      "",
+      `Generated by \`npm run test:benchmark\` on ${new Date().toISOString().slice(0, 10)}.`,
+      "Fixture mode drives the real planner, classifier, extractor, evidence builder and",
+      "profile synthesis over locally-defined sites — no network, so results are reproducible.",
+      "",
+      renderScoreTable(scores),
+      "",
+      "## Failed assertions",
+      "",
+      renderFailures(scores),
+      "",
+      "## Per-case detail",
+      "",
+      ...scores.map((s) =>
+        [
+          `### ${s.label}`,
+          `- business type: ${s.businessType}`,
+          `- brand: ${s.profileSummary.brandName || "(none)"}`,
+          `- description: ${s.profileSummary.description || "(none)"}`,
+          `- industry: ${s.profileSummary.industry}`,
+          `- archetype: ${s.profileSummary.archetype}`,
+          `- offerings: ${s.profileSummary.offerings.join(", ") || "(none)"}`,
+          `- brand identity: ${s.profileSummary.brandIdentity.join(", ") || "(none)"}`,
+          `- markets: ${s.profileSummary.markets.join(", ") || "(none)"} (scope ${s.profileSummary.marketScope})`,
+          `- pages selected: ${s.metrics.pagesSelected}, evidence items: ${s.metrics.evidenceItems}, useful-page share: ${Math.round(s.metrics.usefulPageShare * 100)}%`,
+          `- evidence coverage: ${Math.round(s.metrics.evidenceCoverage * 100)}%, overall confidence: ${s.metrics.overallConfidence}`,
+          `- duration: ${s.metrics.durationMs}ms, time to first field: ${s.metrics.timeToFirstFieldMs ?? "n/a"}ms`,
+          "",
+        ].join("\n"),
+      ),
+    ].join("\n");
+
+    const outPath = path.join(process.cwd(), "benchmarks", "business-profile", "expected", "fixture-report.md");
+    fs.mkdirSync(path.dirname(outPath), { recursive: true });
+    fs.writeFileSync(outPath, report, "utf-8");
+    expect(fs.existsSync(outPath)).toBe(true);
+  });
+});
+
+describe("fixture inventory", () => {
+  it("includes an adversarial and a degenerate case", () => {
+    expect(FIXTURE_SITES.map((s) => s.id)).toEqual(expect.arrayContaining(["adversarial", "sparse"]));
+  });
+});

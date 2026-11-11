@@ -1,0 +1,20 @@
+{
+  "siteEntry": [
+    {
+      "siteUrl": "https://www.lumenstudio.test/",
+      "permissionLevel": "siteFullUser"
+    },
+    {
+      "siteUrl": "sc-domain:lumenstudio.test",
+      "permissionLevel": "siteOwner"
+    },
+    {
+      "siteUrl": "sc-domain:other.test",
+      "permissionLevel": "siteOwner"
+    },
+    {
+      "siteUrl": "https://unverified.test/",
+      "permissionLevel": "siteUnverifiedUser"
+    }
+  ]
+}
